@@ -1,0 +1,58 @@
+Hébrard/Lamothe/Neff
+
+
+Liste des constantes
+
+Epaisseur du fil   //epaisseurFil
+Dimension du plateau //dimPlateau
+
+Liste de variables
+
+Epaisseur de couches (multiple entier d'épaisseur de fil) //epaisseurCouches
+Densité de maillage //densiteMaille (en%)
+Type de maillage // typedef enum{abeille,carre} MAILLE
+Nombre de lignes de périmètre //nbrLignePerimetre
+
+Structure
+structure de coordonnées //  typedef struct coordonnees{int x,y,z;} POINT;
+structure de vecteurs // typedef struct vect{int a,b,c;} VECTEUR;
+
+
+
+1) On récupère les données du fichier STL. => fonction d'exploitation de fichier
+2)On détermine la/les hauteur/s caractéristique/s => fonctions de création de matrice3D (prendre en compte
+ce que veut l'utilisateur)+ tare de l'objet à (0,0,0)
+3)On fait une boucle de tranchage en incrémentant la hauteur du plan considéré:
+-si on est pas sur un bord, on récupère le périmètre (liste de coordonnées) du plan + on y applique le maillage 
+sur une surface de la taille du plateau d'impression qu'on découpe pour restreindre au périmètre de l'objet
+-sinon, on récupère le périmètre du plan, et on le remplit.
+4)On renvoie une liste de matrice2D
+
+fonction main qui lit les données entrées par l'utilisateur
+
+Prototype de fonction
+
+int nbLignes (char* file);
+POINT ** matriceCoordonnees(char* file, int* pnbligne, int* pnbcol);
+
+POINT coordonneeMin (POINT** matriceCoordonnees);
+POINT coordonneeMax (POINT);
+void tareObjet(POINT** matriceCoordonnees, int* pnbligne);
+
+POINT** maillage(int densiteMaille, MAILLE type);
+
+POINT** nouvelleMatrice ();
+
+POINT* perimetre(POINT** matriceCoordonnees,int* pnblignes,int z);
+
+
+
+
+
+
+
+
+
+
+
+
