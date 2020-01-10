@@ -36,11 +36,17 @@ int nbLignes (char* file);
 Renvoie le nombre de triangles du fichier stl.
 
 POINT ** matriceCoordonnees(char* file, int* pnbligne, int* pnbcol);
-Renvoie l'
+Renvoie l'adresse d'une matrice qui contient l'ensemble des informations utiles du fichier stl. Matrice de 4 colones : vecteur
+direteur et les trois points du triangle. Matrice de Nbligne lignes.
 
 POINT coordonneeMin (POINT** matriceCoordonnees);
+Renvoie les coordonnées minimales du fichier STL dans un point.
+
 POINT coordonneeMax (POINT);
+Renvoie les coordonnées maximales du fichier STL dans un point.
+
 void tareObjet(POINT** matriceCoordonnees, int* pnbligne);
+Change matriceCoordonnées pour rencentrer l'ensemble des coodonnées des triangles.
 
 POINT** maillage(int densiteMaille, MAILLE type);
 
