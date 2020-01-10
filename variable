@@ -36,7 +36,7 @@ int nbLignes (char* file);
 POINT ** matriceCoordonnees(char* file, int* pnbligne, int* pnbcol);
 
 POINT coordonneeMin (POINT** matriceCoordonnees);
-POINT coordonneeMax (POINT);
+POINT coordonneeMax (POINT** matriceCoordonnees);
 void tareObjet(POINT** matriceCoordonnees, int* pnbligne);
 
 POINT** maillage(int densiteMaille, MAILLE type);
