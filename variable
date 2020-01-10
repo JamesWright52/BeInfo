@@ -33,10 +33,13 @@ fonction main qui lit les données entrées par l'utilisateur
 Prototype de fonction
 
 int nbLignes (char* file);
+Renvoie le nombre de triangles du fichier stl.
+
 POINT ** matriceCoordonnees(char* file, int* pnbligne, int* pnbcol);
+Renvoie l'
 
 POINT coordonneeMin (POINT** matriceCoordonnees);
-POINT coordonneeMax (POINT** matriceCoordonnees);
+POINT coordonneeMax (POINT);
 void tareObjet(POINT** matriceCoordonnees, int* pnbligne);
 
 POINT** maillage(int densiteMaille, MAILLE type);
