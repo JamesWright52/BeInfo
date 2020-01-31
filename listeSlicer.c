@@ -13,16 +13,7 @@
 #include <string.h>
 #include <assert.h>
 #include "intersect.h"
-
-typedef struct Liste{
-	ELEMT *premier;
-} LISTE;
-/* Ici, on est oblige d'utiliser la notation struct listepoint,
-car la structure s'auto-reference!*/
-typedef struct elemListe {
-	POINT* p;
-	struct elemListe *suivant ;
-} ELEMT ;
+#include "listeSlicer.h"
 
 LISTE* initialisation(){
 	LISTE* liste = calloc(1,sizeof(*LISTE));
