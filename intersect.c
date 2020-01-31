@@ -18,11 +18,11 @@ double max(double z1, double z2, double z3){
   return max;
 }
 
-int segment_intersect(double cote, double z1, double z2){
+int segment_intersecte(double cote, double z1, double z2){
   if ( ( (z1 < cote) && (z2 > cote) ) || ( (z2 < cote) && (z1 > cote) ) ){
-    return 1
+    return 1;
   }
-  return 0
+  return 0;
 }
 
 POINT** intersect(TRIANGLE* matrice, int* pnligne, double cote){
@@ -42,7 +42,7 @@ POINT** intersect(TRIANGLE* matrice, int* pnligne, double cote){
     z1 = matrice[i].p1.z;
     z2 = matrice[i].p2.z;
     z3 = matrice[i].p3.z;
-    normal = matrice[i].n;
+    normal = matrice[i].vecteur;
     //le triangle est intersecté par le plan concerné sinon rien
     if ( (cote <= min(z1,z2,z3) ) || (max(z1,z2,z3) <= cote) ){
         //si le triangle de la ligne i est dans le plan
@@ -95,41 +95,43 @@ POINT** intersect(TRIANGLE* matrice, int* pnligne, double cote){
   return intersection;
 }
 
-//error not working
-POINT point_min_abscisse(POINT** liste_surface, int* pnligne){
-  int ligne,col;
-  double x_min = liste_surface[0] ;
+// //error not working
+// POINT point_min_abscisse(POINT** liste_surface, int* pnligne){
+//   int ligne,col;
+//   double x_min = liste_surface[0] ;
+//
+//   for (ligne = 0; ligne < *pnligne; ligne ++){
+//     for (col = 0; col < 3; col++){
+//       if (x_min > liste_surface[i][j].x){
+//         x_min = liste_surface[i][j].x;
+//       }
+//     }
+//   }
+//   return x_min
+// }
 
-  for (ligne = 0; ligne < *pnligne; ligne ++){
-    for (col = 0; col < 3; col++){
-      if (x_min > liste_surface[i][j].x){
-        x_min = liste_surface[i][j].x;
-      }
-    }
-  }
-  return x_min
-}
+// POINT* perimetre_Marche_Jarvis(POINT** liste_surface_z,int* pnligne){
+//   //en espérant allouer suffisament de mémoire
+//   POINT* perimetre = calloc(3*(*pnligne),sizeof(*perimetre));
+//   if (perimetre == NULL){free (perimetre);}
+//   int ligne,colonne;
+//   int k =0;
+//   POINT p0 = point_min_abscisse(liste_surface_z, pnligne);
+//   POINT p = liste_surface_z[0][0];
+//   double theta_max = (p.y - p0.y)/(p.x - p0.x);
+//   for (ligne = 0; ligne < *pnligne; ligne++){
+//     for (colonne = 0; colonne < 3; colonne ++){
+//       if ( (p.x != p0.x) && (p.y != p0.y)){
+//         if ( (p.y - p0.y)/(p.x - p0.x) > theta_max ){
+//           theta_max = (p.y - p1.y)/(p.x - p1.x);
+//         }
+//       }
+//       p = liste_surface_z[ligne][colonne];
+//     }
+//   }
+//   while (p != p0){
+//
+//   }
+// }
 
-POINT* perimetre_Marche_Jarvis(POINT** liste_surface_z,int* pnligne){
-  //en espérant allouer suffisament de mémoire
-  POINT* perimetre = calloc(3*(*pnligne),sizeof(*perimetre));
-  if (perimetre == NULL){free (perimetre);}
-  int ligne,colonne;
-  int k =0;
-  POINT p0 = point_min_abscisse(liste_surface_z, pnligne);
-  POINT p = liste_surface_z[0][0];
-  double theta_max = (p.y - p0.y)/(p.x - p0.x);
-  for (ligne = 0; ligne < *pnligne; ligne++){
-    for (colonne = 0; colonne < 3; colonne ++){
-      if ( (p.x != p0.x) && (p.y != p0.y)){
-        if ( (p.y - p0.y)/(p.x - p0.x) > theta_max ){
-          theta_max = (p.y - p1.y)/(p.x - p1.x);
-        }
-      }
-      p = liste_surface_z[ligne][colonne];
-    }
-  }
-  while (p != p0){
-
-  }
-}
+int main(){return 1;}
