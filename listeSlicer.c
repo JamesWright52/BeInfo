@@ -28,7 +28,7 @@ LISTE* initialisation(){
 }
 
 /* Insertion en début de liste */
-ELEMT* push_head(LISTE* liste, POINT nouveauPoint){
+void push_head(LISTE* liste, POINT nouveauPoint){
 	ELEMT* nouveau = calloc(1,sizeof(ELEMT));
 	if (nouveau == NULL || liste == NULL){exit(1);}
 	nouveau->p = nouveauPoint;
