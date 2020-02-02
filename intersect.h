@@ -1,17 +1,22 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "conversion_stl_en_tableau_triangle.h"
 
+/* Ici, on est oblige d'utiliser la notation struct listepoint,
+car la structure s'auto-reference!*/
+typedef struct elemListe {
+	POINT* p;
+	struct elemListe *suivant ;
+} ELEMT ;
 
-typedef struct {double x; double y; double z;} POINT;
-
-typedef struct {double a; double b; double c;} VECTEUR;
-
-typedef struct {POINT p1; POINT p2; POINT p3; VECTEUR vecteur;} TRIANGLE;
+typedef struct Liste{
+	ELEMT *premier;
+} LISTE;
 
 //fonction qui prends une matrice de coordonnees et une côte en argument
 //renvoie la liste des points d'intersections entre le plan z et l'objet
 //(format [[P1,P2,P3],...,[P3n,,P3n+1,P3n+2]])
-POINT** intersect(TRIANGLE* matrice, int* pnligne, double cote);
+LISTE* intersect(TRIANGLE* matrice, int* pnligne, double cote);
 
 double min(double z1, double z2, double z3);
 
