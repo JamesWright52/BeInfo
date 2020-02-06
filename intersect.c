@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "intersect.h"
+#include "listeSlicer.h"
 
 //libérer la mémoire allouer un jour
 
