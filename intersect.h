@@ -1,3 +1,6 @@
+#ifndef INTERSECT_H
+#define INTERSECT_H
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "conversion_stl_en_tableau_triangle.h"
@@ -26,3 +29,5 @@ double max(double z1, double z2, double z3);
 int segment_intersecte(double cote,double z1, double z2);
 
 POINT* perimetre_Marche_Jarvis(POINT** liste_surface_z,int* pnligne);
+
+#endif

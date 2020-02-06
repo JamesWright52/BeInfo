@@ -1,3 +1,6 @@
+#ifndef STL_H
+#define STL_H
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -18,3 +21,5 @@ POINT minPointTableau( TRIANGLE * adresse , int * pnbligne);
 void extractionDonneeFichierSTL (FILE* ftxt , int * pnbligne , TRIANGLE * adresse);
 void printfPoint ( POINT point);
 void freeTriangle ( TRIANGLE * adresse);
+
+#endif

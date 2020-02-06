@@ -1,3 +1,6 @@
+#ifndef LISTESLICER_H
+#define LISTESLICER_H
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -18,3 +21,5 @@ void efface(LISTE* liste);
 
 /* Procedure d'affichage de la liste */
 void print(ELEMT * ptr);
+
+#endif
