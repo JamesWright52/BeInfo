@@ -20,6 +20,9 @@ void remove_head(LISTE* liste);
 void efface(LISTE* liste);
 
 /* Procedure d'affichage de la liste */
-void print(ELEMT * ptr);
+void printListe(ELEMT * ptr0);
+
+//Elimine les points en double
+int compteOccurence(LISTE* liste, POINT* point);
 
 #endif

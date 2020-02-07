@@ -61,17 +61,32 @@ void efface(LISTE* liste){
 
 
 /* Procedure d'affichage de la liste */
-void print(ELEMT * ptr){
-	if ( NULL == ptr ){
+void printListe(ELEMT * ptr0){
+	if ( NULL == ptr0 ){
 		printf("Empty!\n") ;
-		return;
 	}
 
-	printf("List : \n") ;
-	while ( NULL != ptr ) 	{
-		printf("ptr=%p point=(%f %f %f) ptr->next=%p\n", ptr, ptr->p->x, ptr->p->y, ptr->p->z, ptr->suivant);
-		ptr = ptr->suivant ;
+	printf("Liste : \n") ;
+	while ( NULL != ptr0 ) 	{
+		printf("point=(%f %f %f) pointeur élément suivant=%p\n", ptr0->p->x, ptr0->p->y, ptr0->p->z, ptr0->suivant);
+		ptr0 = ptr0->suivant ;
 	}
-	printf("\n") ;
-	getchar();
+}
+
+
+//Elimine les points en double
+int compteOccurence(LISTE* liste, POINT* point){
+	ELEMT elementListe;
+	int occurence =0;
+	elementListe.p = liste->premier->p;
+	elementListe.suivant = liste->premier->suivant;
+	while (elementListe.suivant != NULL){
+		if ( ((*point).x == elementListe.p->x)
+		      && ((*point).y == elementListe.p->y)
+				  && ((*point).z == elementListe.p->z)){
+			occurence = occurence + 1;
+		elementListe = *(elementListe.suivant);
+		}
+	}
+	return occurence;
 }

@@ -94,6 +94,22 @@ LISTE* intersect(TRIANGLE* matrice, int* pnligne, double cote){
   return intersection;
 }
 
+void listeSansDoublon(LISTE* liste){
+  ELEMT elementListe;
+  ELEMT element_simple;
+	element_simple.p = liste->premier->p;
+	element_simple.suivant = liste->premier->suivant;
+  elementListe.p = element_simple.suivant->p;
+	elementListe.suivant = element_simple.suivant->suivant;
+  printf("oui") ;
+	while (elementListe.suivant != NULL){
+    printf("oui");
+    if (compteOccurence(liste, elementListe.p) > 1){
+       element_simple.suivant = elementListe.suivant;
+    }
+  }
+}
+
 // //error not working
 // POINT point_min_abscisse(POINT** liste_surface, int* pnligne){
 //   int ligne,col;

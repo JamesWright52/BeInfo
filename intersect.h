@@ -10,7 +10,7 @@ car la structure s'auto-reference!*/
 typedef struct elemListe {
 	POINT* p;
 	VECTEUR* pvecteur;
-	struct elemListe *suivant ;
+	struct elemListe* suivant ;
 } ELEMT ;
 
 typedef struct Liste{
@@ -29,6 +29,8 @@ double max(double z1, double z2, double z3);
 
 //renvoie 1 si le segment entre z1 et z2 intersecte le plan
 int segment_intersecte(double cote,double z1, double z2);
+
+void listeSansDoublon(LISTE* liste);
 
 POINT* perimetre_Marche_Jarvis(POINT** liste_surface_z,int* pnligne);
 
