@@ -11,7 +11,7 @@
 LISTE* initialisation();
 
 /* Insertion en début de liste */
-void push_head(LISTE* liste, POINT* nouveauPoint);
+void push_head(LISTE* liste, POINT* nouveauPoint, VECTEUR* vecteur);
 
 //enlève le premier élément de la liste
 void remove_head(LISTE* liste);

@@ -4,29 +4,36 @@
 #include <assert.h>
 #include "intersect.h"
 #include "listeSlicer.h"
-#include "conversion_stl_en_tableau_triangle.h"
+#include "fonction.h"
 
 /* Programme principal */
-int main(void) {
-  FILE* ftxt;
-  ftxt = fopen("Cube.stl", "rt");
-  if (ftxt == NULL) {
-    puts("Ouverture fichier texte impossible\n");
-    return -1;
-  }
- int pnbligne;
- nombreTriangle(ftxt ,&pnbligne);
- printf ("Nombre de case est %d \n", pnbligne);
 
+int main (){
+ FILE* ftxt;
+ ftxt = fopen("Cube.stl", "rt");
+ if (ftxt == NULL) {
+   puts("Ouverture fichier texte impossible\n");
+   return -1;
+ }
+int nbligne = 0;
+nombreTriangle(ftxt ,&nbligne);
+TRIANGLE * mat = alloueTriangle(nbligne);
+POINT Pmin;
 
- TRIANGLE * mat = alloueTriangle(pnbligne);
- extractionDonneeFichierSTL(ftxt,&pnbligne,mat);
- affiche ( mat , &pnbligne);
- printfPoint (minPointTableau(mat,&pnbligne));
- printfPoint (maxPointTableau(mat,&pnbligne));
+printf ("Nombre de case est %d \n", nbligne);
 
- freeTriangle(mat);
- fclose(ftxt);
+extractionDonneeFichierSTL(ftxt,mat);
+affiche ( mat , &nbligne);
 
-  return 1;
-}
+printfPoint (minPointTableau(mat,&nbligne));
+Pmin = minPointTableau(mat,&nbligne);
+printfPoint (maxPointTableau(mat,&nbligne));
+
+tareTableau ( mat , &nbligne,Pmin);
+affiche ( mat , &nbligne);
+
+freeTriangle(mat);
+fclose(ftxt);
+
+ return 1;
+ }

@@ -30,6 +30,7 @@ LISTE* intersect(TRIANGLE* matrice, int* pnligne, double cote){
   int i;
   double z1, z2, z3;
   POINT interpoint;
+  VECTEUR normal;
   LISTE* intersection = initialisation();
 
   //on parcourt la matrice contenant les coordonnées des triangles ligne par ligne
@@ -37,31 +38,32 @@ LISTE* intersect(TRIANGLE* matrice, int* pnligne, double cote){
     z1 = matrice[i].p1.z;
     z2 = matrice[i].p2.z;
     z3 = matrice[i].p3.z;
+    normal = matrice[i].vecteur;
     //le triangle est intersecté par le plan concerné sinon rien
     if ( (cote <= min(z1,z2,z3) ) || (max(z1,z2,z3) <= cote) ){
         //si le triangle de la ligne i est dans le plan
         if ( (z1 == cote) && (z2 == cote) && (z3 == cote) ){
-           push_head(intersection,&matrice[i].p1);
-           push_head(intersection,&matrice[i].p2);
-           push_head(intersection,&matrice[i].p3);
+           push_head(intersection,&matrice[i].p1, &normal);
+           push_head(intersection,&matrice[i].p2, &normal);
+           push_head(intersection,&matrice[i].p3, &normal);
          }
          //si le plan intersecte un sommet
-         else if ( (z1 == cote) && (z2 != cote) && (z3 != cote) ){ push_head(intersection, &matrice[i].p1); }
-         else if ( (z2 == cote) && (z1 != cote) && (z3 != cote) ){ push_head(intersection, &matrice[i].p2); }
-         else if ( (z3 == cote) && (z1 != cote) && (z2 != cote) ){ push_head(intersection, &matrice[i].p3); }
+         else if ( (z1 == cote) && (z2 != cote) && (z3 != cote) ){ push_head(intersection, &matrice[i].p1, &normal); }
+         else if ( (z2 == cote) && (z1 != cote) && (z3 != cote) ){ push_head(intersection, &matrice[i].p2, &normal); }
+         else if ( (z3 == cote) && (z1 != cote) && (z2 != cote) ){ push_head(intersection, &matrice[i].p3, &normal); }
 
          //si le plan intersecte un côté
          else if ( (z1 == cote) && (z2 == cote) && (z3 != cote) ){
-           push_head(intersection, &matrice[i].p1);
-           push_head(intersection, &matrice[i].p2);
+           push_head(intersection, &matrice[i].p1, &normal);
+           push_head(intersection, &matrice[i].p2, &normal);
            }
          else if ( (z1 == cote) && (z2 != cote) && (z3 == cote) ){
-           push_head(intersection, &matrice[i].p1);
-           push_head(intersection, &matrice[i].p3);
+           push_head(intersection, &matrice[i].p1, &normal);
+           push_head(intersection, &matrice[i].p3, &normal);
            }
          else if ( (z1 != cote) && (z2 == cote) && (z3 == cote) ){
-           push_head(intersection, &matrice[i].p2);
-           push_head(intersection, &matrice[i].p3);
+           push_head(intersection, &matrice[i].p2, &normal);
+           push_head(intersection, &matrice[i].p3, &normal);
            }
          //sinon on calcul l'intersection du plan avecle triangle
          else {
@@ -72,19 +74,19 @@ LISTE* intersect(TRIANGLE* matrice, int* pnligne, double cote){
                interpoint.x = ( (cote - z1) * matrice[i].p2.x - (cote - z2) * matrice[i].p1.x ) / (z2-z1);
                interpoint.y = ( (cote - z1) * matrice[i].p2.y - (cote - z2) * matrice[i].p1.y ) / (z2-z1);
                interpoint.z = cote;
-               push_head(intersection, &interpoint);
+               push_head(intersection, &interpoint, &normal);
                }
             if (segment_intersecte(cote,z2,z3) == 1) {
                interpoint.x = ( (cote - z2) * matrice[i].p3.x - (cote - z3) * matrice[i].p2.x ) / (z3-z2);
                interpoint.y = ( (cote - z2) * matrice[i].p3.y - (cote - z3) * matrice[i].p2.y ) / (z3-z2);
                interpoint.z = cote;
-               push_head(intersection, &interpoint);
+               push_head(intersection, &interpoint, &normal);
                }
             if (segment_intersecte(cote,z3,z1) == 1) {
                interpoint.x = ( (cote - z3) * matrice[i].p1.x - (cote - z1) * matrice[i].p3.x ) / (z1-z3);
                interpoint.y = ( (cote - z3) * matrice[i].p1.y - (cote - z1) * matrice[i].p3.y ) / (z1-z3);
                interpoint.z = cote;
-               push_head(intersection, &interpoint);
+               push_head(intersection, &interpoint, &normal);
                }
          }
      }

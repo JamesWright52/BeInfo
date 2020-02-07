@@ -3,17 +3,19 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "conversion_stl_en_tableau_triangle.h"
+#include "fonction.h"
 
 /* Ici, on est oblige d'utiliser la notation struct listepoint,
 car la structure s'auto-reference!*/
 typedef struct elemListe {
 	POINT* p;
+	VECTEUR* pvecteur;
 	struct elemListe *suivant ;
 } ELEMT ;
 
 typedef struct Liste{
 	ELEMT *premier;
+	VECTEUR* pvecteur;
 } LISTE;
 
 //fonction qui prends une matrice de coordonnees et une côte en argument

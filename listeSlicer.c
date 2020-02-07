@@ -21,17 +21,20 @@ LISTE* initialisation(){
 		exit(EXIT_FAILURE);
 	}
 	POINT p0 = {0,0,0};
+	VECTEUR v0 = {0,0,0};
 	element->p = &p0;
+	element->pvecteur = &v0;
 	element->suivant = NULL;
 	liste->premier = element;
 	return liste;
 }
 
 /* Insertion en d�but de liste */
-void push_head(LISTE* liste, POINT* nouveauPoint){
+void push_head(LISTE* liste, POINT* nouveauPoint, VECTEUR* vecteur){
 	ELEMT* nouveau = calloc(1,sizeof(ELEMT));
 	if (nouveau == NULL || liste == NULL){exit(1);}
 	nouveau->p = nouveauPoint;
+	nouveau->pvecteur = vecteur;
 	nouveau->suivant = liste->premier;
 	liste->premier = nouveau;
 }
