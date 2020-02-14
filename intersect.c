@@ -44,7 +44,7 @@ LISTE* intersect(TRIANGLE* matrice, int* pnligne, double cote){
     //le triangle est intersecté par le plan concerné sinon rien
     if ( (cote >= mini) && (maxi >= cote) ){
         //si le triangle de la ligne i est dans le plan
-        if ( (z1 == cote) && (z2 == cote) && (z3 == cote) ){
+        if ( (z1 == cote) && (z2 == cote) && (z3 == cote) ){/* maxi = mini est plus simple non ? */
            push_head(intersection,matrice[i].p1, normal);
            push_head(intersection,matrice[i].p2, normal);
            push_head(intersection,matrice[i].p3, normal);
