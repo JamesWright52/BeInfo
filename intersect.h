@@ -34,6 +34,4 @@ int compteOccurence(LISTE* liste, POINT point);
 
 LISTE* listeSansDoublon(LISTE* liste);
 
-POINT* perimetre_Marche_Jarvis(POINT** liste_surface_z,int* pnligne);
-
 #endif
