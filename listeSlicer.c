@@ -59,7 +59,7 @@ void printListe(ELEMT * ptr0){
 	if ( NULL == ptr0 ){printf("Empty!\n");}
 	printf("Liste : \n") ;
 	while ( NULL != ptr0->suivant ){
-		printf("point=(%f, %f, %f,)\n", (ptr0->p).x, (ptr0->p).y, (ptr0->p).z, ptr0->suivant);
+		printf("point=(%f, %f, %f,)\n", (ptr0->p).x, (ptr0->p).y, (ptr0->p).z);
 		ptr0 = ptr0->suivant ;
 	}
 }

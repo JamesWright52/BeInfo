@@ -5,6 +5,7 @@
 #include "intersect.h"
 #include "listeSlicer.h"
 #include "fonction.h"
+#include "perimetre.h"
 
 /* Programme principal */
 
@@ -60,6 +61,9 @@ listePointIntersecte = intersect(donneeSTL, &nbligne, hauteur);
 printf("\n");
 listePointIntersecte = listeSansDoublon(listePointIntersecte);
 listePointIntersecte->premier == NULL ? printf("Liste : Liste vide!\n") : printListe((*listePointIntersecte).premier);
+printf("\n");
+
+listePointIntersecte = perimetre_Marche_Jarvis(listePointIntersecte);
 
 efface(listePointIntersecte);
 freeTriangle(donneeSTL);
