@@ -44,7 +44,7 @@ LISTE* intersect(TRIANGLE* matrice, int* pnligne, double cote){
     //le triangle est intersecté par le plan concerné sinon rien
     if ( (cote >= mini) && (maxi >= cote) ){
         //si le triangle de la ligne i est dans le plan
-        if ( (z1 == cote) && (z2 == cote) && (z3 == cote) ){
+        if ( (z1 == cote) && (z2 == cote) && (z3 == cote) ){/* maxi = mini est plus simple non ? */
            push_head(intersection,matrice[i].p1, normal);
            push_head(intersection,matrice[i].p2, normal);
            push_head(intersection,matrice[i].p3, normal);
@@ -67,8 +67,9 @@ LISTE* intersect(TRIANGLE* matrice, int* pnligne, double cote){
            push_head(intersection, matrice[i].p2, normal);
            push_head(intersection, matrice[i].p3, normal);
            }
-         //sinon on calcul l'intersection du plan avecle triangle
+         //sinon on calcul l'intersection du plan avec le triangle
          else {
+            if (condition sur la normal (pas non infinitesimal);
             //deux points sont du même côté du plan : le segment formé n'intersecte pas le plan
             if (segment_intersecte(cote,z1,z2) == 1){
                // on applique les formules de géométries:
