@@ -127,3 +127,4 @@ LISTE* listeSansDoublon(LISTE* liste){
   efface(liste);
   return sansDoublon;
 }
+

@@ -58,6 +58,7 @@ affiche ( donneeSTL , &nbligne);
 printf("\n");
 
 listePointIntersecte = intersect(donneeSTL, &nbligne, hauteur);
+
 //listePointIntersecte->premier == NULL ? printf("Liste : Liste vide!\n") : printListe((*listePointIntersecte).premier);
 printf("\n");
 listePointIntersecte = listeSansDoublon(listePointIntersecte);
@@ -65,6 +66,7 @@ listePointIntersecte->premier == NULL ? printf("Liste : Liste vide!\n") : printL
 printf("\n");
 
 listePointIntersecte = perimetre_Marche_Jarvis(listePointIntersecte);
+
 
 efface(listePointIntersecte);
 freeTriangle(donneeSTL);

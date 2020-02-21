@@ -35,4 +35,5 @@ int compteOccurence(LISTE* liste, POINT point);
 //Elimine les points en double
 LISTE* listeSansDoublon(LISTE* liste);
 
+
 #endif
