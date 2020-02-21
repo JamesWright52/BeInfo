@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <assert.h>
+#include <math.h>
 #include "intersect.h"
 #include "listeSlicer.h"
 #include "fonction.h"

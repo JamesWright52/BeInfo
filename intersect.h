@@ -29,9 +29,10 @@ double max(double z1, double z2, double z3);
 //renvoie 1 si le segment entre z1 et z2 intersecte le plan
 int segment_intersecte(double cote,double z1, double z2);
 
-//Elimine les points en double
+//compte le nombre de fois où point apparaît
 int compteOccurence(LISTE* liste, POINT point);
 
+//Elimine les points en double
 LISTE* listeSansDoublon(LISTE* liste);
 
 #endif

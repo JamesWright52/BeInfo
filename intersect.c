@@ -96,7 +96,7 @@ LISTE* intersect(TRIANGLE* matrice, int* pnligne, double cote){
   return intersection;
 }
 
-//Elimine les points en double
+//compte le nombre de fois où point apparaît
 int compteOccurence(LISTE* liste, POINT point){
 	ELEMT* elementListe = liste->premier;
 	int occurence = 0;
@@ -113,7 +113,7 @@ int compteOccurence(LISTE* liste, POINT point){
 	return occurence;
 }
 
-
+//Elimine les points en double
 LISTE* listeSansDoublon(LISTE* liste){
   ELEMT* elementListe;
   LISTE* sansDoublon = initialisation();
