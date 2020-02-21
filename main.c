@@ -2,9 +2,11 @@
 #include <stdio.h>
 #include <string.h>
 #include <assert.h>
+#include <math.h>
 #include "intersect.h"
 #include "listeSlicer.h"
 #include "fonction.h"
+#include "perimetre.h"
 
 /* Programme principal */
 
@@ -15,9 +17,10 @@ int main (){
  POINT Pmin;
  LISTE* listePointIntersecte;
  FILE* ftxt;
-
+ printf("Entrez la hauteur de la surface :");
+ scanf("%lf",&hauteur);
  //ouverture du fichier stl
- ftxt = fopen("Cube.stl", "rt");
+ ftxt = fopen("./fichier_stl/Cube.stl", "rt");
 
  //on vérifie que le fichier s'ouvre bien
  if (ftxt == NULL) {
@@ -55,12 +58,15 @@ affiche ( donneeSTL , &nbligne);
 printf("\n");
 
 listePointIntersecte = intersect(donneeSTL, &nbligne, hauteur);
-printListe((*listePointIntersecte).premier);
+
+//listePointIntersecte->premier == NULL ? printf("Liste : Liste vide!\n") : printListe((*listePointIntersecte).premier);
+printf("\n");
+listePointIntersecte = listeSansDoublon(listePointIntersecte);
+listePointIntersecte->premier == NULL ? printf("Liste : Liste vide!\n") : printListe((*listePointIntersecte).premier);
 printf("\n");
 
-listeSansDoublon(listePointIntersecte);
-printf("oui");
-printListe((*listePointIntersecte).premier);
+listePointIntersecte = perimetre_Marche_Jarvis(listePointIntersecte);
+
 
 efface(listePointIntersecte);
 freeTriangle(donneeSTL);

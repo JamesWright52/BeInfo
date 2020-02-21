@@ -20,21 +20,17 @@ LISTE* initialisation(){
 	if (element == NULL || liste == NULL){
 		exit(EXIT_FAILURE);
 	}
-	POINT p0 = {0,0,0};
-	VECTEUR v0 = {0,0,0};
-	element->p = &p0;
-	element->pvecteur = &v0;
 	element->suivant = NULL;
 	liste->premier = element;
 	return liste;
 }
 
 /* Insertion en d�but de liste */
-void push_head(LISTE* liste, POINT* nouveauPoint, VECTEUR* vecteur){
+void push_head(LISTE* liste, POINT nouveauPoint, VECTEUR vecteur){
 	ELEMT* nouveau = calloc(1,sizeof(ELEMT));
 	if (nouveau == NULL || liste == NULL){exit(1);}
 	nouveau->p = nouveauPoint;
-	nouveau->pvecteur = vecteur;
+	nouveau->vecteur = vecteur;
 	nouveau->suivant = liste->premier;
 	liste->premier = nouveau;
 }
@@ -48,7 +44,6 @@ void remove_head(LISTE* liste){
 	}
 }
 
-
 /* Suppression de la liste" */
 void efface(LISTE* liste){
 	ELEMT* p = liste->premier;
@@ -59,34 +54,12 @@ void efface(LISTE* liste){
 	}
 }
 
-
 /* Procedure d'affichage de la liste */
 void printListe(ELEMT * ptr0){
-	if ( NULL == ptr0 ){
-		printf("Empty!\n") ;
-	}
-
+	if ( NULL == ptr0 ){printf("Empty!\n");}
 	printf("Liste : \n") ;
-	while ( NULL != ptr0 ) 	{
-		printf("point=(%f %f %f) pointeur élément suivant=%p\n", ptr0->p->x, ptr0->p->y, ptr0->p->z, ptr0->suivant);
+	while ( NULL != ptr0->suivant ){
+		printf("point=(%f, %f, %f,)\n", (ptr0->p).x, (ptr0->p).y, (ptr0->p).z);
 		ptr0 = ptr0->suivant ;
 	}
-}
-
-
-//Elimine les points en double
-int compteOccurence(LISTE* liste, POINT* point){
-	ELEMT elementListe;
-	int occurence =0;
-	elementListe.p = liste->premier->p;
-	elementListe.suivant = liste->premier->suivant;
-	while (elementListe.suivant != NULL){
-		if ( ((*point).x == elementListe.p->x)
-		      && ((*point).y == elementListe.p->y)
-				  && ((*point).z == elementListe.p->z)){
-			occurence = occurence + 1;
-		elementListe = *(elementListe.suivant);
-		}
-	}
-	return occurence;
 }
