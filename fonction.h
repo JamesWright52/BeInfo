@@ -1,9 +1,10 @@
 #ifndef STL_H
 #define STL_H
 
-#include<stdio.h>
-#include<stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
+#include <math.h>
 
 typedef struct
 {
@@ -34,6 +35,7 @@ void affiche(TRIANGLE * adresse, int * pnbligne);;
 void printfTriangle(TRIANGLE elmt);
 POINT maxPointTableau( TRIANGLE * adresse , int * pnbligne);
 POINT minPointTableau( TRIANGLE * adresse , int * pnbligne);
+double longueur_max_objet(TRIANGLE * adresse , int * pnbligne);
 void extractionDonneeFichierSTL (FILE* ftxt, TRIANGLE * adresse);
 void printfPoint ( POINT point);
 void freeTriangle ( TRIANGLE * adresse);

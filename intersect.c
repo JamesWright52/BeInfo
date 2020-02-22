@@ -4,7 +4,6 @@
 #include "listeSlicer.h"
 
 //libérer la mémoire allouer un jour
-
 double min(double z1, double z2, double z3){
   double min = z1;
   if (z2 < min){min = z2;}
@@ -127,4 +126,3 @@ LISTE* listeSansDoublon(LISTE* liste){
   efface(liste);
   return sansDoublon;
 }
-
