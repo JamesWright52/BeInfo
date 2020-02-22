@@ -14,6 +14,7 @@ int main (){
  //initialisation
  int nbligne = 0;
  double hauteur = 0.;
+ double longueur_max;
  POINT Pmin;
  LISTE* listePointIntersecte;
  FILE* ftxt;
@@ -50,6 +51,10 @@ Pmin = minPointTableau(donneeSTL,&nbligne);
 
 printf ("Le point max est :");
 printfPoint (maxPointTableau(donneeSTL,&nbligne));
+
+printf ("La longueurmax est :");
+longueur_max = longueur_max_objet(donneeSTL,&nbligne);
+printf("%lf\n",longueur_max);
 printf("\n");
 
 //on place l'objet dans l'espace arbitrairement -> le plus proche de l'origine dans le cadran x,y,z positifs (tare)
@@ -65,7 +70,7 @@ listePointIntersecte = listeSansDoublon(listePointIntersecte);
 listePointIntersecte->premier == NULL ? printf("Liste : Liste vide!\n") : printListe((*listePointIntersecte).premier);
 printf("\n");
 
-listePointIntersecte = perimetre_Marche_Jarvis(listePointIntersecte);
+listePointIntersecte = perimetre_Marche_Jarvis(listePointIntersecte, longueur_max);
 
 
 efface(listePointIntersecte);

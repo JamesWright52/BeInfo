@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include <string.h>
+#include <math.h>
 #include"fonction.h"
 
 TRIANGLE * alloueTriangle(int n) /*alloue l'espace mémoire pour stocker une matrice de triangle*/
@@ -214,6 +215,12 @@ POINT maxPointTableau( TRIANGLE * adresse , int * pnbligne)
     }
   }
     return Pmax ;
+}
+
+double longueur_max_objet(TRIANGLE * adresse , int * pnbligne){
+  POINT max = maxPointTableau (adresse ,pnbligne);
+  POINT min = minPointTableau (adresse ,pnbligne);
+  return  sqrt( pow(max.x-min.x,2)+ pow(max.y-min.y,2)+ pow(max.z-min.z,2) );
 }
 
 void tareTableau (TRIANGLE * adresse , int * pnbligne, POINT Pmin)

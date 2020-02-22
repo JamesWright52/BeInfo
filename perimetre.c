@@ -3,70 +3,90 @@
 #include <string.h>
 #include <assert.h>
 #include <math.h>
+#include "fonction.h"
 #include "perimetre.h"
 #include "listeSlicer.h"
 #include "intersect.h"
 
 
-ELEMT* chercheElemSuivant(LISTE* liste_surface_z, LISTE* perimetre, POINT p0, double* ptheta ){
+ELEMT* chercheElemSuivant(LISTE* liste_surface_z, LISTE* perimetre, POINT p0, double* ptheta_balaye, double distance_max){
   ELEMT* p_element_k = liste_surface_z -> premier;
   ELEMT* element_adjacent;
   //on définit l'angle  theta comme l'angle (Oy,(M1,Msuivant))
-  double theta_min = *ptheta;
+  double theta_min = 360;
   double theta_entre_points;
-  double M_PI = 3.14159265358979323846;
-  while ( p_element_k->suivant != NULL ){
-    //on vérifie qu'on ne compare pas p0 avec lui-même
-    if (compteOccurence(perimetre, p_element_k->p) == 0){
-      if ( (p_element_k->p.y - p0.y == 0) && (p_element_k->p.x - p0.x > 0)){
-        theta_entre_points = 90;
-      }
-      else if ((p_element_k->p.y - p0.y == 0) && (p_element_k->p.x - p0.x < 0)){
-        theta_entre_points = 270;
-      }
-      //+- pi/2
-      else if ( (p_element_k->p.x - p0.x == 0) && (p_element_k->p.y - p0.y > 0) ) {
-        theta_entre_points = 0;
-      }
-      else if ( (p_element_k->p.x - p0.x == 0) && (p_element_k->p.y - p0.y < 0) ) {
-        theta_entre_points = 180;
-      }
-      //le cas où on compare un point à lui-même
-      else if ( (p_element_k->p.x - p0.x != 0) && (p_element_k->p.y - p0.y > 0) ){
-        theta_entre_points = atan( (p_element_k->p.x - p0.x)/(p_element_k->p.y - p0.y) ) * (180/(M_PI));}
-      }
-      else if ( (p_element_k->p.x - p0.x != 0) && (p_element_k->p.y - p0.y < 0) ){
-        theta_entre_points = atan( (p_element_k->p.x - p0.x)/(p_element_k->p.y - p0.y) ) * (180/(M_PI));}
-      }
-    //comme le premier point est quelconque, il faut vérifier que tous les angles sont positifs
-    if ( (theta_entre_points < 0) || ( (theta_entre_points == 0) && (p_element_k->p.y - p0.y < 0) )){ theta_entre_points += 360;}
-    //on récupère l'angle le plus petit qui correspond à l'élément recherché
-    if (theta_min > theta_entre_points){
-      theta_min = theta_entre_points;
-      element_adjacent = p_element_k;
-    }
-    printf("1 dy = %lf, dx = %lf ,theta_entre_points = %lf, thetamin= %lf\n",p_element_k->p.y - p0.y,p_element_k->p.x - p0.x,theta_entre_points, theta_min );
-    p_element_k = p_element_k -> suivant;
-  }
-  printListe(perimetre->premier);
-  ptheta = &theta_min;
-  return element_adjacent;
-}
+  double distance_entre_points;
+  double distance_min_alignes = distance_max;
+  double dy = 0;
+  double dx = 0;
+//  double M_PI = 3.14159265358979323846;
+  while ( NULL != (p_element_k -> suivant) ){
+    //si le point a déjà été traité, on ne le considère pas
+    if ( compteOccurence(perimetre,p_element_k->p) != 0){p_element_k = p_element_k -> suivant;}
+    else {
+          dy = p_element_k->p.y - p0.y;
+          dx = p_element_k->p.x - p0.x;
+          distance_entre_points = sqrt(dx*dx + dy*dy);
+          //--------------------------------------------------------------------------
+          //Ce bloc calcul theta entre le point fixé en entrée et le point de la liste désigné par p_element_k
 
-LISTE* perimetre_Marche_Jarvis(LISTE* liste_surface_z){
+          //topo sur arctangente pour l'angle considéré
+          //dx>=0 et dy>0 => theta = arctan(dx/dy)        (varie de 0 à pi/2)
+          //dx>=0 et dy<0 => theta = pi + arctan(dx/dy)   (varie de pi/2 à pi)
+          //dx<=0 et dy<0 => theta = pi + arctan(dx/dy)   (varie de pi à 3pi/2)
+          //dx<=0 et dy>0 => theta = 2pi + arctan(dx/dy)  (varie de 3pi/2 à 2pi)
+          if ( (dy == 0) && (dx > 0)){
+            theta_entre_points = 90;
+          }
+          else if ( (dy == 0) && (dx < 0)){
+            theta_entre_points = 270;
+          }
+          else if ((dx >= 0) && (dy > 0)){
+            theta_entre_points = atan( (dx)/(dy) ) * 180/M_PI;
+          }
+          else if ( (dy < 0) ) {
+            theta_entre_points = (M_PI + atan( (dx)/(dy) )) * 180/M_PI;
+          }
+          else if ( (dx <= 0) && (dy > 0) ) {
+            theta_entre_points = (2*M_PI + atan( (dx)/(dy) )) * 180/M_PI;
+          }
+          //le cas où on compare un point à lui-même
+          else {
+            theta_entre_points = 360;
+          }
+          //--------------------------------------------------------------------------
+          //Ce bloc permet d'extraire l'angle le plus petit ainsi que, en cas d'alignement de plusieurs points, la distance la plus courte au point p0
+          //on récupère l'angle le plus petit qui correspond à l'élément recherché
+          if ( ( theta_entre_points < theta_min) ){
+            theta_min = theta_entre_points;
+            element_adjacent = p_element_k;
+          }
+          //Cas de points alignés (risque d'oublier des points intermédiaires)
+          else if ( (theta_min == theta_entre_points) && (distance_entre_points < distance_min_alignes )){
+            distance_min_alignes =  distance_entre_points;
+            element_adjacent = p_element_k;
+          }
+          else{}
+          //--------------------------------------------------------------------------
+          //printf("dx = %lf, dy = %lf ,theta_entre_points = %lf, thetamin= %lf\n",p_element_k->p.x - p0.x,p_element_k->p.y - p0.y,theta_entre_points, theta_min );
+          printf("theta=%lf, distance_entre_points = %lf distance_min_alignes= %lf\n",theta_entre_points, distance_entre_points, distance_min_alignes );
+          p_element_k = p_element_k -> suivant;
+        }
+      }
+      *ptheta_balaye = theta_min;
+      return element_adjacent;
+    }
+
+LISTE* perimetre_Marche_Jarvis(LISTE* liste_surface_z, double distance_max){
   LISTE* perimetre = initialisation();
   //theta varie entre 0° et 360° dans le sens horaire
-  double theta = 359;
-  double somme_theta = 0;
-  POINT p0 = (*(liste_surface_z->premier)).p;
-  ELEMT* element_adjacent = chercheElemSuivant(liste_surface_z, perimetre, p0, &theta);
-  while ( somme_theta < 360 ){
-    element_adjacent = chercheElemSuivant(liste_surface_z, perimetre, p0, &theta);
-    somme_theta += theta;
-    if (compteOccurence(perimetre, element_adjacent->p) == 0){
-      push_head(perimetre, element_adjacent->p, element_adjacent->vecteur);
-    }
-    p0 = element_adjacent->p;
+  double theta_balaye = 0;
+  ELEMT* element_adjacent = liste_surface_z->premier ;
+  while ( (compteOccurence(perimetre, element_adjacent->p) == 0 ) && (theta_balaye <= 360)){
+    push_head(perimetre, element_adjacent->p, element_adjacent->vecteur);
+    element_adjacent = chercheElemSuivant(liste_surface_z, perimetre, element_adjacent->p, &theta_balaye, distance_max);
   }
+  remove_head(perimetre);
+  printListe(perimetre->premier);
   return perimetre;
 }
