@@ -19,14 +19,16 @@ ELEMT* chercheElemSuivant(LISTE* liste_surface_z, LISTE* perimetre, POINT p0, do
   double distance_min_alignes = distance_max;
   double dy = 0;
   double dx = 0;
-//  double M_PI = 3.14159265358979323846;
-  while ( NULL != (p_element_k -> suivant) ){
+  //  double M_PI = 3.14159265358979323846;
+  while ( NULL != p_element_k ){
     //si le point a déjà été traité, on ne le considère pas
-    if ( compteOccurence(perimetre,p_element_k->p) != 0){p_element_k = p_element_k -> suivant;}
+    printf("%lf %lf\n",p_element_k->p.x,p_element_k->p.y);
+    if ( compteOccurence(perimetre,p_element_k->p) != 0){ p_element_k = p_element_k -> suivant; }
     else {
           dy = p_element_k->p.y - p0.y;
           dx = p_element_k->p.x - p0.x;
-          distance_entre_points = sqrt(dx*dx + dy*dy);
+          //printf ("distance_entre_points = %lf distance_min_alignes= %lf\n", distance_entre_points, distance_min_alignes);
+
           //--------------------------------------------------------------------------
           //Ce bloc calcul theta entre le point fixé en entrée et le point de la liste désigné par p_element_k
 
@@ -54,28 +56,28 @@ ELEMT* chercheElemSuivant(LISTE* liste_surface_z, LISTE* perimetre, POINT p0, do
           else {
             theta_entre_points = 360;
           }
+
           //--------------------------------------------------------------------------
           //Ce bloc permet d'extraire l'angle le plus petit ainsi que, en cas d'alignement de plusieurs points, la distance la plus courte au point p0
           //on récupère l'angle le plus petit qui correspond à l'élément recherché
-          if ( ( theta_entre_points < theta_min) ){
+          distance_entre_points = sqrt(dx*dx + dy*dy);
+          printf("\nPoint fixé : x = %lf, y = %lf\n",p0.x, p0.y);
+          printf("Point comparé : x = %lf, y = %lf\n",p_element_k->p.x ,p_element_k->p.y);
+          printf("theta=%lf theta_min=%lf\n distance_entre_points = %lf distance_min_alignes= %lf\n-------\n",theta_entre_points, theta_min, distance_entre_points, distance_min_alignes );
+          if ( theta_entre_points <= theta_min ){
             theta_min = theta_entre_points;
-            element_adjacent = p_element_k;
+            if ( (distance_entre_points <= distance_min_alignes) ){
+              distance_min_alignes = distance_entre_points;
+              element_adjacent = p_element_k;
+            }
           }
-          //Cas de points alignés (risque d'oublier des points intermédiaires)
-          else if ( (theta_min == theta_entre_points) && (distance_entre_points < distance_min_alignes )){
-            distance_min_alignes =  distance_entre_points;
-            element_adjacent = p_element_k;
-          }
-          else{}
           //--------------------------------------------------------------------------
-          //printf("dx = %lf, dy = %lf ,theta_entre_points = %lf, thetamin= %lf\n",p_element_k->p.x - p0.x,p_element_k->p.y - p0.y,theta_entre_points, theta_min );
-          printf("theta=%lf, distance_entre_points = %lf distance_min_alignes= %lf\n",theta_entre_points, distance_entre_points, distance_min_alignes );
           p_element_k = p_element_k -> suivant;
-        }
-      }
-      *ptheta_balaye = theta_min;
-      return element_adjacent;
     }
+  }
+  *ptheta_balaye = theta_min;
+  return element_adjacent;
+}
 
 LISTE* perimetre_Marche_Jarvis(LISTE* liste_surface_z, double distance_max){
   LISTE* perimetre = initialisation();
@@ -85,8 +87,8 @@ LISTE* perimetre_Marche_Jarvis(LISTE* liste_surface_z, double distance_max){
   while ( (compteOccurence(perimetre, element_adjacent->p) == 0 ) && (theta_balaye <= 360)){
     push_head(perimetre, element_adjacent->p, element_adjacent->vecteur);
     element_adjacent = chercheElemSuivant(liste_surface_z, perimetre, element_adjacent->p, &theta_balaye, distance_max);
+    printf("compteOccurence=%d theta balaye=%lf\n", compteOccurence(perimetre, element_adjacent->p),theta_balaye);
   }
   remove_head(perimetre);
-  printListe(perimetre->premier);
   return perimetre;
 }
