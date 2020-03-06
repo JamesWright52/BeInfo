@@ -1,0 +1,223 @@
+# depslib dependency file v1.0
+1582505788 source:c:\users\antoi\documents\projetprogramm\projets6\kitc-phelma\version1\main.cpp
+	<iostream>
+	<FL/Fl.H>
+	<FL/fl_draw.H>
+	"main.h"
+	"u1-interface.h"
+	"u3-callbacks.h"
+	"u4-fonctions.h"
+
+1264520650 c:\users\antoi\documents\projetprogramm\projets6\kitc-phelma\fltkwin\fl\fl.h
+	"Enumerations.H"
+
+1264520650 c:\users\antoi\documents\projetprogramm\projets6\kitc-phelma\fltkwin\fl\enumerations.h
+	"Fl_Export.H"
+
+1264520652 c:\users\antoi\documents\projetprogramm\projets6\kitc-phelma\fltkwin\fl\fl_export.h
+
+1264520652 c:\users\antoi\documents\projetprogramm\projets6\kitc-phelma\fltkwin\fl\fl_draw.h
+	"Enumerations.H"
+
+1264520916 c:\users\antoi\documents\projetprogramm\projets6\kitc-phelma\version1\main.h
+	<FL/Fl_Widget.H>
+
+1264520670 c:\users\antoi\documents\projetprogramm\projets6\kitc-phelma\fltkwin\fl\fl_widget.h
+	"Enumerations.H"
+
+1582631815 c:\users\antoi\documents\projetprogramm\projets6\kitc-phelma\version1\u1-interface.h
+	"main.h"
+	<FL/Fl_Double_Window.H>
+	<FL/Fl_Button.H>
+	<FL/Fl_Value_Slider.H>
+	<FL/Fl_Choice.H>
+	<FL/Fl_Value_Input.H>
+	<FL/Fl_Output.H>
+
+1264520652 c:\users\antoi\documents\projetprogramm\projets6\kitc-phelma\fltkwin\fl\fl_double_window.h
+	"Fl_Window.H"
+
+1264520670 c:\users\antoi\documents\projetprogramm\projets6\kitc-phelma\fltkwin\fl\fl_window.h
+	"Fl_Group.H"
+
+1264520656 c:\users\antoi\documents\projetprogramm\projets6\kitc-phelma\fltkwin\fl\fl_group.h
+	"Fl_Widget.H"
+
+1264520652 c:\users\antoi\documents\projetprogramm\projets6\kitc-phelma\fltkwin\fl\fl_button.h
+	"Fl_Widget.H"
+
+1264520670 c:\users\antoi\documents\projetprogramm\projets6\kitc-phelma\fltkwin\fl\fl_value_slider.h
+	"Fl_Slider.H"
+
+1264520666 c:\users\antoi\documents\projetprogramm\projets6\kitc-phelma\fltkwin\fl\fl_slider.h
+	"Fl_Valuator.H"
+
+1264520668 c:\users\antoi\documents\projetprogramm\projets6\kitc-phelma\fltkwin\fl\fl_valuator.h
+	"Fl_Widget.H"
+
+1264520652 c:\users\antoi\documents\projetprogramm\projets6\kitc-phelma\fltkwin\fl\fl_choice.h
+	"Fl_Menu_.H"
+
+1264520658 c:\users\antoi\documents\projetprogramm\projets6\kitc-phelma\fltkwin\fl\fl_menu_.h
+	"Fl_Widget.H"
+	"Fl_Menu_Item.H"
+
+1264520658 c:\users\antoi\documents\projetprogramm\projets6\kitc-phelma\fltkwin\fl\fl_menu_item.h
+	"Fl_Widget.H"
+	"Fl_Image.H"
+
+1264520656 c:\users\antoi\documents\projetprogramm\projets6\kitc-phelma\fltkwin\fl\fl_image.h
+	"Enumerations.H"
+
+1264520670 c:\users\antoi\documents\projetprogramm\projets6\kitc-phelma\fltkwin\fl\fl_value_input.h
+	"Fl_Valuator.H"
+	"Fl_Input.H"
+
+1264520656 c:\users\antoi\documents\projetprogramm\projets6\kitc-phelma\fltkwin\fl\fl_input.h
+	"Fl_Input_.H"
+
+1264520656 c:\users\antoi\documents\projetprogramm\projets6\kitc-phelma\fltkwin\fl\fl_input_.h
+	"Fl_Widget.H"
+
+1264520660 c:\users\antoi\documents\projetprogramm\projets6\kitc-phelma\fltkwin\fl\fl_output.h
+	"Fl_Input.H"
+
+1582631725 c:\users\antoi\documents\projetprogramm\projets6\kitc-phelma\version1\u3-callbacks.h
+	<FL/Fl_Widget.H>
+
+1582653158 c:\users\antoi\documents\projetprogramm\projets6\kitc-phelma\version1\u4-fonctions.h
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	<assert.h>
+
+1582636085 source:c:\users\antoi\documents\projetprogramm\projets6\kitc-phelma\version1\u1-interface.cpp
+	<iostream>
+	"u1-interface.h"
+	"u2-dessin.h"
+	"u3-callbacks.h"
+	"u4-fonctions.h"
+
+1582584080 c:\users\antoi\documents\projetprogramm\projets6\kitc-phelma\version1\u2-dessin.h
+	"u4-fonctions.h"
+
+1582636223 source:c:\users\antoi\documents\projetprogramm\projets6\kitc-phelma\version1\u3-callbacks.cpp
+	<iostream>
+	<FL/Fl.H>
+	<FL/fl_ask.H>
+	<FL/Fl_File_Chooser.H>
+	"u1-interface.h"
+	"u2-dessin.h"
+	"u3-callbacks.h"
+	"u4-fonctions.h"
+
+1264520650 c:\users\antoi\documents\projetprogramm\projets6\kitc-phelma\fltkwin\fl\fl_ask.h
+	"Enumerations.H"
+
+1264520654 c:\users\antoi\documents\projetprogramm\projets6\kitc-phelma\fltkwin\fl\fl_file_chooser.h
+	<FL/Fl.H>
+	<FL/Fl_Double_Window.H>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<FL/Fl_Group.H>
+	<FL/Fl_Choice.H>
+	<FL/Fl_Menu_Button.H>
+	<FL/Fl_Button.H>
+	<FL/Fl_Preferences.H>
+	<FL/Fl_Tile.H>
+	<FL/Fl_File_Browser.H>
+	<FL/Fl_Box.H>
+	<FL/Fl_Check_Button.H>
+	<FL/Fl_File_Input.H>
+	<FL/Fl_Return_Button.H>
+	<FL/fl_ask.H>
+
+1264520658 c:\users\antoi\documents\projetprogramm\projets6\kitc-phelma\fltkwin\fl\fl_menu_button.h
+	"Fl_Menu_.H"
+
+1264520662 c:\users\antoi\documents\projetprogramm\projets6\kitc-phelma\fltkwin\fl\fl_preferences.h
+	<windows.h>
+	<stdio.h>
+	"Fl_Export.H"
+
+1264520668 c:\users\antoi\documents\projetprogramm\projets6\kitc-phelma\fltkwin\fl\fl_tile.h
+	"Fl_Group.H"
+
+1264520654 c:\users\antoi\documents\projetprogramm\projets6\kitc-phelma\fltkwin\fl\fl_file_browser.h
+	"Fl_Browser.H"
+	"Fl_File_Icon.H"
+	"filename.H"
+
+1264520650 c:\users\antoi\documents\projetprogramm\projets6\kitc-phelma\fltkwin\fl\fl_browser.h
+	"Fl_Browser_.H"
+
+1264520652 c:\users\antoi\documents\projetprogramm\projets6\kitc-phelma\fltkwin\fl\fl_browser_.h
+	"Fl_Group.H"
+	"Fl_Scrollbar.H"
+
+1264520666 c:\users\antoi\documents\projetprogramm\projets6\kitc-phelma\fltkwin\fl\fl_scrollbar.h
+	"Fl_Slider.H"
+
+1264520654 c:\users\antoi\documents\projetprogramm\projets6\kitc-phelma\fltkwin\fl\fl_file_icon.h
+	"Fl.H"
+
+1264520650 c:\users\antoi\documents\projetprogramm\projets6\kitc-phelma\fltkwin\fl\filename.h
+	"Fl_Export.H"
+	<sys/types.h>
+	"/usr/include/dirent.h"
+	<sys/types.h>
+	<direct.h>
+	<sys/types.h>
+	<dirent.h>
+
+1264520650 c:\users\antoi\documents\projetprogramm\projets6\kitc-phelma\fltkwin\fl\fl_box.h
+	"Fl_Widget.H"
+
+1264520652 c:\users\antoi\documents\projetprogramm\projets6\kitc-phelma\fltkwin\fl\fl_check_button.h
+	"Fl_Light_Button.H"
+
+1264520658 c:\users\antoi\documents\projetprogramm\projets6\kitc-phelma\fltkwin\fl\fl_light_button.h
+	"Fl_Button.H"
+
+1264520654 c:\users\antoi\documents\projetprogramm\projets6\kitc-phelma\fltkwin\fl\fl_file_input.h
+	<FL/Fl_Input.H>
+
+1264520664 c:\users\antoi\documents\projetprogramm\projets6\kitc-phelma\fltkwin\fl\fl_return_button.h
+	"Fl_Button.H"
+
+1583491465 source:c:\users\antoi\documents\projetprogramm\projets6\kitc-phelma\version1\u4-fonctions.cpp
+	<iostream>
+	<stdlib.h>
+	<time.h>
+	<string.h>
+	<assert.h>
+	<api/inc/fmod.h>
+	<api/inc/fmod_errors.h>
+	<stdio.h>
+	"u4-fonctions.h"
+	"u1-interface.h"
+
+1296500974 c:\users\antoi\documents\projetprogramm\projets6\kitc-phelma\fmodwin\api\inc\fmod.h
+	"fmod_codec.h"
+	"fmod_dsp.h"
+	"fmod_memoryinfo.h"
+
+1296500974 c:\users\antoi\documents\projetprogramm\projets6\kitc-phelma\fmodwin\api\inc\fmod_codec.h
+
+1296500974 c:\users\antoi\documents\projetprogramm\projets6\kitc-phelma\fmodwin\api\inc\fmod_dsp.h
+
+1296500974 c:\users\antoi\documents\projetprogramm\projets6\kitc-phelma\fmodwin\api\inc\fmod_memoryinfo.h
+
+1296500974 c:\users\antoi\documents\projetprogramm\projets6\kitc-phelma\fmodwin\api\inc\fmod_errors.h
+	"fmod.h"
+
+1583480903 source:c:\users\antoi\documents\projetprogramm\projets6\kitc-phelma\version1\u2-dessin.cpp
+	<iostream>
+	<math.h>
+	<FL/Fl.H>
+	<FL/fl_draw.H>
+	"u1-interface.h"
+	"u2-dessin.h"
+	"u4-fonctions.h"
+
