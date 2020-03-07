@@ -1,10 +1,10 @@
 CC=gcc
 LD=$(CC)
 
-CFLAGS=-Wall -Wextra -Iinclude -Werror -g
+CFLAGS=-Wall -Wextra -Iinclude -Werror -g 
 LFLAGS=-lm
 
-TARGET = Slicer3D
+TARGET = slicer
 
 SRC=$(wildcard source/*.c)
 OBJ=$(SRC:.c=.o)
