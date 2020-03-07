@@ -27,6 +27,7 @@ ELEMT* chercheElemSuivant(LISTE* liste_surface_z, LISTE* perimetre, POINT p0, do
     else {
           dy = p_element_k->p.y - p0.y;
           dx = p_element_k->p.x - p0.x;
+
           //printf ("distance_courante = %lf distance_min_alignes= %lf\n", distance_courante, distance_min_alignes);
 
           //--------------------------------------------------------------------------
@@ -60,6 +61,7 @@ ELEMT* chercheElemSuivant(LISTE* liste_surface_z, LISTE* perimetre, POINT p0, do
           //--------------------------------------------------------------------------
           //Ce bloc permet d'extraire l'angle le plus petit ainsi que, en cas d'alignement de plusieurs points, la distance la plus courte au point p0
           //on récupère l'angle le plus petit qui correspond à l'élément recherché
+      
           distance_courante = sqrt(dx*dx + dy*dy);
           printf("\nPoint fixé : x = %lf, y = %lf\n",p0.x, p0.y);
           printf("Point comparé : x = %lf, y = %lf\n",p_element_k->p.x ,p_element_k->p.y);
@@ -75,6 +77,7 @@ ELEMT* chercheElemSuivant(LISTE* liste_surface_z, LISTE* perimetre, POINT p0, do
               element_adjacent = p_element_k;
             }
           }
+
           //--------------------------------------------------------------------------
           p_element_k = p_element_k -> suivant;
     }
