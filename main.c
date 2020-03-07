@@ -42,36 +42,35 @@ printf ("Nombre de case est %d \n \n", nbligne);
 extractionDonneeFichierSTL(ftxt,donneeSTL);
 
 //affichage de la matrice récupérée
-affiche ( donneeSTL , &nbligne);
-printf("\n");
+//affiche ( donneeSTL , &nbligne);
+//printf("\n");
 
-printf ("Le point min est :");
-printfPoint (minPointTableau(donneeSTL,&nbligne));
+//printf ("Le point min est :");
+//printfPoint (minPointTableau(donneeSTL,&nbligne));
 Pmin = minPointTableau(donneeSTL,&nbligne);
 
-printf ("Le point max est :");
-printfPoint (maxPointTableau(donneeSTL,&nbligne));
+//printf ("Le point max est :");
+//printfPoint (maxPointTableau(donneeSTL,&nbligne));
 
-printf ("La longueurmax est :");
+//printf ("La longueur max est :");
 longueur_max = longueur_max_objet(donneeSTL,&nbligne);
-printf("%lf\n",longueur_max);
-printf("\n");
+//printf("%lf\n",longueur_max);
+//printf("\n");
 
 //on place l'objet dans l'espace arbitrairement -> le plus proche de l'origine dans le cadran x,y,z positifs (tare)
-tareTableau ( donneeSTL , &nbligne,Pmin);
+tareTableau ( donneeSTL , &nbligne, Pmin);
 affiche ( donneeSTL , &nbligne);
 printf("\n");
 
 listePointIntersecte = intersect(donneeSTL, &nbligne, hauteur);
 
 //listePointIntersecte->premier == NULL ? printf("Liste : Liste vide!\n") : printListe((*listePointIntersecte).premier);
-printf("\n");
 listePointIntersecte = listeSansDoublon(listePointIntersecte);
 listePointIntersecte->premier == NULL ? printf("Liste : Liste vide!\n") : printListe((*listePointIntersecte).premier);
 printf("\n");
 
 listePointIntersecte = perimetre_Marche_Jarvis(listePointIntersecte, longueur_max);
-
+printListe(listePointIntersecte->premier);
 
 efface(listePointIntersecte);
 freeTriangle(donneeSTL);

@@ -16,12 +16,10 @@
 
 LISTE* initialisation(){
 	LISTE* liste = calloc(1,sizeof(*liste));
-	ELEMT* element = calloc(1,sizeof(*element));
-	if (element == NULL || liste == NULL){
+	if ( liste == NULL ){
 		exit(EXIT_FAILURE);
 	}
-	element->suivant = NULL;
-	liste->premier = element;
+	liste->premier = NULL;
 	return liste;
 }
 
@@ -56,9 +54,9 @@ void efface(LISTE* liste){
 
 /* Procedure d'affichage de la liste */
 void printListe(ELEMT * ptr0){
-	if ( NULL == ptr0 ){printf("Empty!\n");}
+	if ( NULL == ptr0 ){ printf("Vide!\n"); }
 	printf("Liste : \n") ;
-	while ( NULL != ptr0->suivant ){
+	while ( NULL != ptr0 ){
 		printf("point=(%f, %f, %f,)\n", (ptr0->p).x, (ptr0->p).y, (ptr0->p).z);
 		ptr0 = ptr0->suivant ;
 	}
