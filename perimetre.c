@@ -15,7 +15,7 @@ ELEMT* chercheElemSuivant(LISTE* liste_surface_z, LISTE* perimetre, POINT p0, do
   //on définit l'angle  theta comme l'angle (Oy,(M1,Msuivant))
   double theta_min = 360;
   double theta_entre_points;
-  double distance_entre_points;
+  double distance_courante, distance_precedente;
   double distance_min_alignes = distance_max;
   double dy = 0;
   double dx = 0;
@@ -27,7 +27,8 @@ ELEMT* chercheElemSuivant(LISTE* liste_surface_z, LISTE* perimetre, POINT p0, do
     else {
           dy = p_element_k->p.y - p0.y;
           dx = p_element_k->p.x - p0.x;
-          //printf ("distance_entre_points = %lf distance_min_alignes= %lf\n", distance_entre_points, distance_min_alignes);
+
+          //printf ("distance_courante = %lf distance_min_alignes= %lf\n", distance_courante, distance_min_alignes);
 
           //--------------------------------------------------------------------------
           //Ce bloc calcul theta entre le point fixé en entrée et le point de la liste désigné par p_element_k
@@ -60,17 +61,23 @@ ELEMT* chercheElemSuivant(LISTE* liste_surface_z, LISTE* perimetre, POINT p0, do
           //--------------------------------------------------------------------------
           //Ce bloc permet d'extraire l'angle le plus petit ainsi que, en cas d'alignement de plusieurs points, la distance la plus courte au point p0
           //on récupère l'angle le plus petit qui correspond à l'élément recherché
-          distance_entre_points = sqrt(dx*dx + dy*dy);
+      
+          distance_courante = sqrt(dx*dx + dy*dy);
           printf("\nPoint fixé : x = %lf, y = %lf\n",p0.x, p0.y);
           printf("Point comparé : x = %lf, y = %lf\n",p_element_k->p.x ,p_element_k->p.y);
-          printf("theta=%lf theta_min=%lf\n distance_entre_points = %lf distance_min_alignes= %lf\n-------\n",theta_entre_points, theta_min, distance_entre_points, distance_min_alignes );
-          if ( theta_entre_points <= theta_min ){
+          printf("theta=%lf theta_min=%lf\n distance_courante = %lf distance_min_alignes= %lf\n-------\n",theta_entre_points, theta_min, distance_courante, distance_min_alignes );
+          if ( theta_entre_points < theta_min ){
             theta_min = theta_entre_points;
-            if ( (distance_entre_points <= distance_min_alignes) ){
-              distance_min_alignes = distance_entre_points;
+            distance_precedente = distance_courante;
+            element_adjacent = p_element_k;
+          }
+          else if (theta_entre_points == theta_min){
+            if ( (distance_courante <= distance_precedente) ){
+              distance_min_alignes = distance_courante;
               element_adjacent = p_element_k;
             }
           }
+
           //--------------------------------------------------------------------------
           p_element_k = p_element_k -> suivant;
     }
