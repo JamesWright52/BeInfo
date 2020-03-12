@@ -66,10 +66,10 @@ listePointIntersecte = intersect(donneeSTL, &nbligne, hauteur);
 
 //listePointIntersecte->premier == NULL ? printf("Liste : Liste vide!\n") : printListe((*listePointIntersecte).premier);
 listePointIntersecte = listeSansDoublon(listePointIntersecte);
-listePointIntersecte->premier == NULL ? printf("Liste : Liste vide!\n") : printListe((*listePointIntersecte).premier);
-printf("\n");
-
-listePointIntersecte = perimetre_Marche_Jarvis(listePointIntersecte, longueur_max);
+if (listePointIntersecte->premier == NULL){ printf("Liste : Liste vide!\n"); }
+else {
+  (listePointIntersecte = perimetre_Marche_Jarvis(listePointIntersecte, longueur_max));
+}
 printListe(listePointIntersecte->premier);
 
 efface(listePointIntersecte);

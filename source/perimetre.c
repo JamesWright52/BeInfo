@@ -20,7 +20,7 @@ ELEMT* chercheElemSuivant(LISTE* liste_surface_z, LISTE* perimetre, POINT p0, do
   double dy = 0;
   double dx = 0;
   //  double M_PI = 3.14159265358979323846;
-  while ( NULL != p_element_k ){
+  while ( NULL != p_element_k->suivant ){
     //si le point a déjà été traité, on ne le considère pas
     printf("%lf %lf\n",p_element_k->p.x,p_element_k->p.y);
     if ( compteOccurence(perimetre,p_element_k->p) != 0){ p_element_k = p_element_k -> suivant; }

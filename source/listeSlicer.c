@@ -61,3 +61,12 @@ void printListe(ELEMT * ptr0){
 		ptr0 = ptr0->suivant ;
 	}
 }
+
+void concatene_liste(LISTE* liste, LISTE* listeconca){
+	ELEMT* p = liste->premier;
+	while(p->suivant != NULL){
+		p = p->suivant;
+	}
+	p->suivant = listeconca->premier;
+}
+
