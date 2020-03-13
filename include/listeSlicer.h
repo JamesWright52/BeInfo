@@ -22,7 +22,7 @@ void efface(LISTE* liste);
 /* Procedure d'affichage de la liste */
 void printListe(ELEMT * ptr0);
 
+// Concatène deux listes.
 void concatene_liste(LISTE* liste, LISTE* listeconca);
 
 #endif
-

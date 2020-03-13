@@ -22,8 +22,10 @@ typedef struct Liste{
 //(format [[P1,P2,P3],...,[P3n,,P3n+1,P3n+2]])
 LISTE* intersect(TRIANGLE* matrice, int* pnligne, double cote);
 
+// Renvoie le plus petit réel parmi 3.
 double min(double z1, double z2, double z3);
 
+// Renvoie le plus grand réel parmi 3.
 double max(double z1, double z2, double z3);
 
 //renvoie 1 si le segment entre z1 et z2 intersecte le plan

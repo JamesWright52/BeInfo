@@ -6,6 +6,7 @@
 #include <string.h>
 #include <math.h>
 
+// Définition de la structure POINT avec les coordonnées x, y et z.
 typedef struct
 {
   double x;
@@ -13,6 +14,7 @@ typedef struct
   double z;
 } POINT;
 
+// Définition de la structure VECTEUR.
 typedef struct
 {
   double a;
