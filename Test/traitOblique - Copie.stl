@@ -1,0 +1,26 @@
+solid traitOblique.stl
+ facet normal 0.707107 0.707107 0.0
+  outer loop
+   vertex 10.0 0.0 0.0
+   vertex 0.0 10.0 0.0
+   vertex 0.0 10.0 10.0
+  endloop
+ endfacet
+
+facet normal 0.707107 0.707107 0.0
+  outer loop
+   vertex 5.0 0.0 0.0
+   vertex 0.0 5.0 0.0
+   vertex 0.0 5.0 10.0
+  endloop
+ endfacet
+
+facet normal 0.707107 -0.707107 0.0
+  outer loop
+   vertex 5.0 0.0 0.0
+   vertex 5.0 5.0 0.0
+   vertex 5.0 5.0 10.0
+  endloop
+ endfacet
+endsolid traitOblique.stl
+ 

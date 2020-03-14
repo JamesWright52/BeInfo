@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="projet-type" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin\Debug\projet-type" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj\Debug\" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin\Release\projet-type" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj\Release\" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add option="-s" />
+				</Compiler>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="`fltk-config --cxxflags`" />
+			<Add directory="..\fltkwin" />
+			<Add directory="..\fmodwin" />
+		</Compiler>
+		<Linker>
+			<Add option="-lfltk -lmsvcrt -lgdi32 -lwsock32 -lole32 -luuid -lcomctl32 -lm -luser32 -lkernel32" />
+			<Add option="`fltk-config --ldstaticflags`" />
+			<Add library="..\fltkwin\lib\libfltk.a" />
+			<Add library="..\fltkwin\lib\libfltkforms.a" />
+			<Add library="..\fltkwin\lib\libfltkgl.a" />
+			<Add library="..\fltkwin\lib\libfltkimages.a" />
+			<Add library="..\fltkwin\lib\libfltkjpeg.a" />
+			<Add library="..\fltkwin\lib\libfltkpng.a" />
+			<Add library="..\fmodwin\api\lib\libfmodex.a" />
+			<Add directory="..\fltkwin\lib" />
+			<Add directory="..\fmodwin\api\lib" />
+		</Linker>
+		<Unit filename="main.cpp" />
+		<Unit filename="main.h" />
+		<Unit filename="u1-interface.cpp" />
+		<Unit filename="u1-interface.h" />
+		<Unit filename="u2-dessin.cpp" />
+		<Unit filename="u2-dessin.h" />
+		<Unit filename="u3-callbacks.cpp" />
+		<Unit filename="u3-callbacks.h" />
+		<Unit filename="u4-fonctions.cpp" />
+		<Unit filename="u4-fonctions.h" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+			<envvars />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
