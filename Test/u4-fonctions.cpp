@@ -27,21 +27,24 @@ struct Donnees gDonnees;
 // Initialiser
 void InitialiserDonnees()
 {
+     // On initialise le generateur de nombres aleatoires
+    srand(time(NULL));
+
     FILE* ftxt;//ouverture du fichier test
     ftxt = fopen("Vide.stl", "rt");
     if (ftxt == NULL) {
         puts("Ouverture fichier texte impossible\n");
     }
     else gDonnees.fichierstl = ftxt;
+    gDonnees.typeAffichage = -2;
 }
 
 void ReInitialiserDonnees()
 {
-    // On initialise le generateur de nombres aleatoires
-    srand(time(NULL));
-
 
     // Initialisations des donnees a effectuer ici
+    gDonnees.typeAffichage = -1;
+
     gDonnees.densiteMaillage = 0.10;
     gInterface.CurseurDensite->value( gDonnees.densiteMaillage) ;
 
@@ -51,8 +54,10 @@ void ReInitialiserDonnees()
     gDonnees.hauteur = 1;
     gInterface.CurseurHauteur->value( gDonnees.hauteur);
 
-    gDonnees.typeAffichage = 0;
     gDonnees.listeSurface = initialisation();
+
+    gDonnees.dimFil = 1;
+    gInterface.MenuOptionsFil->value(0) ;
 
 
     //definition de la matrice de triangle
@@ -68,7 +73,6 @@ void ReInitialiserDonnees()
     Pmin = minPointTableau(mat,&nbligne);
     tareTableau ( mat , &nbligne,Pmin);
     gDonnees.donneesSTL = mat;
-    //affiche(gDonnees.donneesSTL,&(gDonnees.nbligne));
 
     //extraction des maxima et minima de l'objet
     POINT_P Pmaxi;
@@ -76,10 +80,8 @@ void ReInitialiserDonnees()
     gDonnees.Pmax = Pmaxi;
     gDonnees.rapportEchelle = (H_ZONE - 40)/max (Pmaxi.x,Pmaxi.y,Pmaxi.z);
 
+    // initialisation des curseurs en conséquence
     gInterface.CurseurHauteur->bounds( 0,Pmaxi.z) ;
-
-    gDonnees.dimFil = 1;
-    gInterface.MenuOptionsFil->value(0) ;
 
     fclose(gDonnees.fichierstl);
 }
@@ -179,45 +181,6 @@ void extractionDonneeFichierSTL (FILE* ftxt , int * pnbligne , TRIANGLE * adress
 
     }
   }
-}
-
-void affiche(TRIANGLE * adresse, int * pnbligne)
-{
-  int i;
-  for (i = 0 ; i < *pnbligne; i++)
-  {
-    printfTriangle(adresse [i]);
-  }
-}
-
-void printfTriangle (TRIANGLE elmt)
-{
-  printf( "%f  ",  elmt.vecteur.a );
-  printf( "%f  ",  elmt.vecteur.b );
-  printf( "%f  |",  elmt.vecteur.c );
-  printf( "%f  ",  elmt.p1.x );
-  printf( "%f  ",  elmt.p1.y );
-  printf( "%f  |",  elmt.p1.z );
-  printf( "%f  ",  elmt.p2.x );
-  printf( "%f  ",  elmt.p2.y );
-  printf( "%f  |",  elmt.p2.z );
-  printf( "%f  ",  elmt.p3.x );
-  printf( "%f  ",  elmt.p3.y );
-  printf( "%f  \n",  elmt.p3.z );
-}
-
-void printfPoint ( POINT_P point)
-{
-  printf( "%f  ",  point.x );
-  printf( "%f  ",  point.y );
-  printf( "%f  \n",  point.z );
-}
-
-void printfVecteur ( VECTEUR vect)
-{
-  printf( "%f  ",  vect.a );
-  printf( "%f  ",  vect.b );
-  printf( "%f  \n",  vect.c );
 }
 
 POINT_P minPointTableau( TRIANGLE * adresse , int * pnbligne)
@@ -391,20 +354,6 @@ void concatene_liste(LISTE* liste, LISTE* listeconca){
 		p = p->suivant;
 	}
 	p->suivant = listeconca->premier;
-}
-
-/* Procedure d'affichage de la liste */
-void printListe(ELEMT * ptr0){
-	if ( NULL == ptr0 )
-        {
-            printf("Empty!\n");
-            }
-
-	else {printf("Liste : \n") ;
-        while ( NULL != ptr0 ){
-		printf("point=(%f, %f, %f,)\n", (ptr0->p).x, (ptr0->p).y, (ptr0->p).z);
-		ptr0 = ptr0->suivant ;
-	}}
 }
 
 
@@ -680,3 +629,62 @@ int inter_OM(POINT_P m_courant, POINT_P origine, POINT_P point_bord_1, POINT_P p
 return 0;
 
 }
+
+
+/*________________________________________________________________________________________________________________________*/
+/*________________________________________________________________________________________________________________________*/
+
+//Fonction utile au débogage
+void affiche(TRIANGLE * adresse, int * pnbligne)
+{
+  int i;
+  for (i = 0 ; i < *pnbligne; i++)
+  {
+    printfTriangle(adresse [i]);
+  }
+}
+
+void printfTriangle (TRIANGLE elmt)
+{
+  printf( "%f  ",  elmt.vecteur.a );
+  printf( "%f  ",  elmt.vecteur.b );
+  printf( "%f  |",  elmt.vecteur.c );
+  printf( "%f  ",  elmt.p1.x );
+  printf( "%f  ",  elmt.p1.y );
+  printf( "%f  |",  elmt.p1.z );
+  printf( "%f  ",  elmt.p2.x );
+  printf( "%f  ",  elmt.p2.y );
+  printf( "%f  |",  elmt.p2.z );
+  printf( "%f  ",  elmt.p3.x );
+  printf( "%f  ",  elmt.p3.y );
+  printf( "%f  \n",  elmt.p3.z );
+}
+
+void printfPoint ( POINT_P point)
+{
+  printf( "%f  ",  point.x );
+  printf( "%f  ",  point.y );
+  printf( "%f  \n",  point.z );
+}
+
+void printfVecteur ( VECTEUR vect)
+{
+  printf( "%f  ",  vect.a );
+  printf( "%f  ",  vect.b );
+  printf( "%f  \n",  vect.c );
+}
+
+/* Procedure d'affichage de la liste */
+void printListe(ELEMT * ptr0){
+	if ( NULL == ptr0 )
+        {
+            printf("Empty!\n");
+            }
+
+	else {printf("Liste : \n") ;
+        while ( NULL != ptr0 ){
+		printf("point=(%f, %f, %f,)\n", (ptr0->p).x, (ptr0->p).y, (ptr0->p).z);
+		ptr0 = ptr0->suivant ;
+	}}
+}
+

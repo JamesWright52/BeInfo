@@ -5,7 +5,6 @@
 #include"u4-fonctions.h"
 
 // Declaration des sous-programmes
-void Clear ();
 void ZoneDessinDessinerCB( Fl_Widget* widget, void* data ) ;
 void TracerObjet2dCB();
 void tracerContour (LISTE * listePointIntersect);

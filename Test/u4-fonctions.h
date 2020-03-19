@@ -122,7 +122,8 @@ struct Donnees
     float densiteMaillage;
     int nbLignePerimetre;
     float hauteur;
-    float typeAffichage;
+    int typeAffichage;
+    int**maille;
 // Variables du projet a definir ici
 };
 
@@ -131,9 +132,5 @@ extern struct Donnees gDonnees;
 // Déclaration des sous-programmes
 void InitialiserDonnees() ;
 void ReInitialiserDonnees() ;
-
-// Utilitaires
-void JouerSon(char *) ;         // Jouer un son
-void Attente(double Seconds);   // Procedure d'attente
 
 #endif // _u4_fonctions_h

@@ -21,9 +21,9 @@ void CycleCB( void* ) ;
 int main (int argc, char ** argv)
 {
     //Creation de l'interface
-    CreerInterface() ;
     InitialiserDonnees() ; // On initialise les donnees
-    ReInitialiserDonnees();
+    CreerInterface() ;
+    //ReInitialiserDonnees();
 
     //Initialisation du logiciel
     ActualiserInterface(); // On affiche les donnees sur l'interface
@@ -36,15 +36,6 @@ int main (int argc, char ** argv)
     return Fl::run();
 }
 
-// Fonction cyclique
-void CycleCB( void* )
-{
-    // Appel de la fonction TraiterCycleCB ( u3-callbacks )
-    TraiterCycleCB() ;
-
-    // Rearmement de la fonction cyclique
-    Fl::add_timeout(DUREE_CYCLE, CycleCB, NULL ) ;
-}
 
 
 

@@ -16,13 +16,22 @@
 // Declaration pour utiliser iostream
 using namespace std;
 
+void ZoneDessinSourisCB( Fl_Widget* widget, void* data )
+{
+    // ATTENTION : X et Y ne sont pas relatifs a la zone mais a la fenetre qui la contient !!!!
+
     // Exemple d'evenement : clic souris
     if ( Fl::event() == FL_PUSH )
     {
         printf("Mouse push = %i x = %i y = %i\n", Fl::event_button(), Fl::event_x(), Fl::event_y());
+
+        // Actions suite a un clic souris a placer ici :
+        // ...
+
     }
 
 }
+
 
 // ZoneDessinClavierCB
 void ZoneDessinClavierCB( Fl_Widget* widget, void* data )
@@ -88,8 +97,8 @@ void BoutonSTLCB(Fl_Widget* w, void* data)
     else
     {
         gDonnees.fichierstl = ftxt;
+        gDonnees.typeAffichage = -1;
         ReInitialiserDonnees();
-        ActualiserInterface();
         gInterface.ZoneDessin->redraw() ;
     }
 
@@ -109,7 +118,7 @@ void BoutonMoinsH (Fl_Widget* w, void* data)
         gDonnees.hauteur = 0.0;
     }
     gInterface.CurseurHauteur->value(gDonnees.hauteur);
-    ActualiserInterface();
+    gDonnees.typeAffichage = 0;
     gInterface.ZoneDessin->redraw() ;
 }
 
@@ -127,27 +136,26 @@ void BoutonPlusH (Fl_Widget* w, void* data)
         gDonnees.hauteur = gDonnees.Pmax.z;
     }
     gInterface.CurseurHauteur->value(gDonnees.hauteur);
-    ActualiserInterface();
+    gDonnees.typeAffichage = 0;
     gInterface.ZoneDessin->redraw() ;
 }
 
 void CurseurCBhauteur ( Fl_Widget* w, void* data )
 {
     gDonnees.hauteur = gInterface.CurseurHauteur->value() ;
-    ActualiserInterface();
+    gDonnees.typeAffichage = 0;
     gInterface.ZoneDessin->redraw() ;
 }
 
 
 void MenuOptionsCB( Fl_Widget* w, void* data )
 {
-    gDonnees.typeAffichage =  gInterface.MenuOptions->value() ;
 }
 
 void MenuOptionsFilCB( Fl_Widget* w, void* data )
 {
      gDonnees.dimFil =  1 + gInterface.MenuOptionsFil->value() ;
-     ActualiserInterface();
+     gDonnees.typeAffichage = 1;
      gInterface.ZoneDessin->redraw() ;
 }
 
@@ -161,7 +169,7 @@ void ChampSaisieNumNbContour( Fl_Widget* w, void* data )
         if (nbContour > 0 && nbContour <= 10)
         {
             gDonnees.nbLignePerimetre = nbContour;
-            ActualiserInterface();
+            gDonnees.typeAffichage = 1;
             gInterface.ZoneDessin->redraw() ;
         }
         else{
@@ -188,7 +196,7 @@ void BoutonMoinsD (Fl_Widget* w, void* data)
         gDonnees.densiteMaillage = 0.0;
     }
     gInterface.CurseurDensite->value(gDonnees.densiteMaillage);
-    ActualiserInterface();
+    gDonnees.typeAffichage = 2;
     gInterface.ZoneDessin->redraw() ;
 }
 
@@ -206,13 +214,13 @@ void BoutonPlusD (Fl_Widget* w, void* data)
         gDonnees.densiteMaillage = 1.0;
     }
     gInterface.CurseurDensite->value(gDonnees.densiteMaillage);
-    ActualiserInterface();
+    gDonnees.typeAffichage = 2;
     gInterface.ZoneDessin->redraw() ;
 }
 
 void CurseurCBDensite ( Fl_Widget* w, void* data )
 {
     gDonnees.densiteMaillage = gInterface.CurseurDensite->value() ;
-    ActualiserInterface();
+    gDonnees.typeAffichage = 2;
     gInterface.ZoneDessin->redraw() ;
 }
