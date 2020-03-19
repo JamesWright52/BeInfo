@@ -7,7 +7,7 @@
 #include <FL/Fl_Widget.H>
 
 // Declaration des sous-programmes
-void TraiterCycleCB() ;
+//void TraiterCycleCB() ;
 void ZoneDessinSourisCB( Fl_Widget* widget, void* data ) ;
 void ZoneDessinClavierCB( Fl_Widget* widget, void* data ) ;
 

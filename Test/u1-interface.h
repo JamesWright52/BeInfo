@@ -13,19 +13,17 @@
 #include <FL/Fl_Output.H>
 
 // Definition des constantes
-#define X_ZONE  300   // X de la zone
-#define Y_ZONE  10     // Y de la zone
-#define L_ZONE  680    // Largeur de la zone
-#define H_ZONE  680
-#define X_MAX  1000    // Largeur de la zone
-#define Y_MAX  700
+#define X_ZONE  300    // X de la zone des paramètres (hors zone de dessin)
+#define Y_ZONE  10     // Y de la zone des paramètres (hors zone de dessin)
+#define L_ZONE  680    // Largeur de la zone de dessin
+#define H_ZONE  680    // Hauteur de la zone de dessin
+#define X_MAX  1000    // Largeur de la fenêtre graphique
+#define Y_MAX  700     // Hauteur de la fenêtre graphique
 #define DIM_INTERFACE 560
-#define PRECISION 1
-     // Hauteur de la zone
+#define PRECISION 1    //Précision des curseurs de hauteur des surfaces et de densité du maillage
 
 // Declaration des objets de l'interface
-struct Interface
-{
+struct Interface {
     Fl_Double_Window*   Fenetre ;
     DrawingArea*        ZoneDessin ;
     Fl_Button*          BoutonQuitter ;

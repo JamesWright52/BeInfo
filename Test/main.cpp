@@ -9,6 +9,7 @@
 #include "main.h"
 #include "u1-interface.h"
 #include "u3-callbacks.h"
+#include "u2-dessin.h"
 #include "u4-fonctions.h"
 
 // Declaration pour utiliser iostream
@@ -18,12 +19,13 @@ using namespace std;
 void CycleCB( void* ) ;
 
 // Programme Principal
-int main (int argc, char ** argv)
-{
+int main (int argc, char ** argv){
     //Creation de l'interface
-    InitialiserDonnees() ; // On initialise les donnees
     CreerInterface() ;
-    //ReInitialiserDonnees();
+    // Récupération d'un fichier stl vide pour avoir une interface initiale
+    InitialiserDonnees() ;
+    // Initialisation des curseurs de l'interface
+    ReInitialiserDonnees();
 
     //Initialisation du logiciel
     ActualiserInterface(); // On affiche les donnees sur l'interface
@@ -36,15 +38,15 @@ int main (int argc, char ** argv)
     return Fl::run();
 }
 
+// Fonction cyclique
+void CycleCB( void* )
+{
+    // Appel de la fonction TraiterCycleCB ( u3-callbacks )
+    //TraiterCycleCB() ;
 
-
-
-
-
-
-
-
-
+    // Rearmement de la fonction cyclique
+    Fl::add_timeout(DUREE_CYCLE, CycleCB, NULL ) ;
+}
 
 
 

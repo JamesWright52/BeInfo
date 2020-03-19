@@ -10,7 +10,6 @@
 // Definition des constantes
 #define DUREE_CYCLE 0.015    // 0.500 secondes, depend du materiel utilise
 
-    //le triangle est intersecté par le p
 /*________________________________________________________________________________________________________________________*/
 
 // Declaration des donnees du projet
@@ -99,31 +98,30 @@ LISTE* listeSansDoublon(LISTE* liste);
 
 int** maillage( double densite, int epaisseur_fil);
 int** plateau_int(double x, double y);
-int ** maillage_cadrillage(int** cadrillage, LISTE* perimetre, POINT_P origine);
-int dedans(LISTE* perimetre, POINT_P plateau_ij, POINT_P origine);
-int nombre_inter_2par2(LISTE* perimetre, POINT_P m_courant, POINT_P origine);
+int ** maillage_interieur(int** cadrillage, LISTE* perimetre, POINT_P reference);
+int dedans(LISTE* perimetre, POINT_P plateau_ij, POINT_P reference);
+int nombre_inter_2par2(LISTE* perimetre, POINT_P m_courant, POINT_P reference);
 double minim(double P1, double P2);
 double maxim(double P1, double P2);
-int inter_OM(POINT_P m_courant, POINT_P origine, POINT_P point_bord_1, POINT_P point_bord_2);
+int inter_OM(POINT_P m_courant, POINT_P reference, POINT_P point_bord_1, POINT_P point_bord_2);
 
 /*________________________________________________________________________________________________________________________*/
 
 // Structure globale pour les variables fonctionnelles
 struct Donnees
 {
-    FILE * fichierstl;
-    float rapportEchelle;
-    int dimFil;
-    POINT_P Pmax;
-    LISTE * listePointIntersect;
-    LISTE * listeSurface;
-    TRIANGLE * donneesSTL;
-    int nbligne;
-    float densiteMaillage;
-    int nbLignePerimetre;
-    float hauteur;
-    int typeAffichage;
-    int**maille;
+    FILE *       fichierstl;
+    float        rapportEchelle;
+    int          dimFil;
+    POINT_P      Pmax;
+    LISTE *      listePointIntersect;
+    LISTE *      listeSurface;
+    TRIANGLE *   donneesSTL;
+    int          nbligne;
+    float        densiteMaillage;
+    int          nbLignePerimetre;
+    float        hauteur;
+    float        typeAffichage;
 // Variables du projet a definir ici
 };
 
@@ -132,5 +130,9 @@ extern struct Donnees gDonnees;
 // Déclaration des sous-programmes
 void InitialiserDonnees() ;
 void ReInitialiserDonnees() ;
+
+// Utilitaires
+void JouerSon(char *) ;         // Jouer un son
+void Attente(double Seconds);   // Procedure d'attente
 
 #endif // _u4_fonctions_h

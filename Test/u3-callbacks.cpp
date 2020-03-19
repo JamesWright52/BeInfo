@@ -16,35 +16,23 @@
 // Declaration pour utiliser iostream
 using namespace std;
 
+// ZoneDessinSourisCB
 void ZoneDessinSourisCB( Fl_Widget* widget, void* data )
 {
-    // ATTENTION : X et Y ne sont pas relatifs a la zone mais a la fenetre qui la contient !!!!
-
-    // Exemple d'evenement : clic souris
-    if ( Fl::event() == FL_PUSH )
-    {
-        printf("Mouse push = %i x = %i y = %i\n", Fl::event_button(), Fl::event_x(), Fl::event_y());
-
-        // Actions suite a un clic souris a placer ici :
-        // ...
-
-    }
-
+// Exemple d'evenement : clic souris
+if ( Fl::event() == FL_PUSH ){
+  printf( "Mouse push = %i x = %i y = %i\n", Fl::event_button(), Fl::event_x(), Fl::event_y() );
+}
 }
 
-
 // ZoneDessinClavierCB
-void ZoneDessinClavierCB( Fl_Widget* widget, void* data )
-{
+void ZoneDessinClavierCB( Fl_Widget* widget, void* data ){
     // Definition des variables
-    int Touche ;
-
+    int Touche;
     // Recuperation de la touche clavier activee
-    Touche = Fl::event_key() ;
-
+    Touche = Fl::event_key();
     // Traitement de la touche
-    switch ( Touche )
-    {
+    switch (Touche){
         // Touches speciales
         case FL_Left :
             printf("Appui sur la touche Gauche\n");
@@ -54,38 +42,36 @@ void ZoneDessinClavierCB( Fl_Widget* widget, void* data )
             break;
         case FL_Up :
             printf("Appui sur la touche Haut\n");
-            break ;
+            break;
         case FL_Down :
             printf("Appui sur la touche Bas\n");
-            break ;
+            break;
         // Caracteres
         case ' ' :
             printf("Appui sur la touche Espace\n");
-            break ;
+            break;
         case 'a' :
             printf("Appui sur le caractere a\n");
-            break ;
+            break;
         case 'b' :
             printf("Appui sur le caractere b\n");
-            break ;
+            break;
         case '1' :
             printf("Appui sur le caractere 1\n");
-            break ;
+            break;
         case '2' :
             printf("Appui sur le chiffre 2\n");
-            break ;
+            break;
     }
 }
 
-void BoutonQuitterCB(Fl_Widget* w, void* data)
-{
+void BoutonQuitterCB(Fl_Widget* w, void* data){
     // Fin du programme
-    exit(0) ;
+    exit(0);
 }
 
-void BoutonSTLCB(Fl_Widget* w, void* data)
-{
-    char* NomFichier ;
+void BoutonSTLCB(Fl_Widget* w, void* data){
+    char* NomFichier;
     NomFichier = fl_file_chooser("Choisissez un fichier", "*.stl", NULL ) ;
 
     FILE * ftxt;
@@ -94,133 +80,111 @@ void BoutonSTLCB(Fl_Widget* w, void* data)
         puts("Ouverture fichier texte impossible\n");
         fl_message("Ouverture du fichier Stl impossible");
     }
-    else
-    {
+    else {
         gDonnees.fichierstl = ftxt;
-        gDonnees.typeAffichage = -1;
         ReInitialiserDonnees();
+        ActualiserInterface();
         gInterface.ZoneDessin->redraw() ;
     }
-
 }
 
-void BoutonMoinsH (Fl_Widget* w, void* data)
-{
+void BoutonMoinsH (Fl_Widget* w, void* data){
     float p = 1;
     int i = 0;
-    for(i = 0; i < PRECISION; i++)
-    {
+    for(i = 0; i < PRECISION; i++){
         p = p * 10;
     }
     gDonnees.hauteur = gDonnees.hauteur - 1/p;
-    if (gDonnees.hauteur<=0)
-    {
+    if (gDonnees.hauteur <= 0){
         gDonnees.hauteur = 0.0;
     }
     gInterface.CurseurHauteur->value(gDonnees.hauteur);
-    gDonnees.typeAffichage = 0;
-    gInterface.ZoneDessin->redraw() ;
+    ActualiserInterface();
+    gInterface.ZoneDessin->redraw();
 }
 
-void BoutonPlusH (Fl_Widget* w, void* data)
-{
+void BoutonPlusH (Fl_Widget* w, void* data){
     float p = 1;
-    for(int i = 0; i<PRECISION; i++)
-    {
+    for(int i = 0; i < PRECISION; i++){
         p = p * 10;
     }
-
     gDonnees.hauteur = gDonnees.hauteur + 1/p;
-    if (gDonnees.hauteur >= gDonnees.Pmax.z)
-    {
+    if (gDonnees.hauteur >= gDonnees.Pmax.z){
         gDonnees.hauteur = gDonnees.Pmax.z;
     }
     gInterface.CurseurHauteur->value(gDonnees.hauteur);
-    gDonnees.typeAffichage = 0;
+    ActualiserInterface();
     gInterface.ZoneDessin->redraw() ;
 }
 
-void CurseurCBhauteur ( Fl_Widget* w, void* data )
-{
-    gDonnees.hauteur = gInterface.CurseurHauteur->value() ;
-    gDonnees.typeAffichage = 0;
-    gInterface.ZoneDessin->redraw() ;
+void CurseurCBhauteur ( Fl_Widget* w, void* data ){
+    gDonnees.hauteur = gInterface.CurseurHauteur->value();
+    ActualiserInterface();
+    gInterface.ZoneDessin->redraw();
 }
 
 
-void MenuOptionsCB( Fl_Widget* w, void* data )
-{
+void MenuOptionsCB( Fl_Widget* w, void* data ){
+    gDonnees.typeAffichage =  gInterface.MenuOptions->value();
 }
 
-void MenuOptionsFilCB( Fl_Widget* w, void* data )
-{
-     gDonnees.dimFil =  1 + gInterface.MenuOptionsFil->value() ;
-     gDonnees.typeAffichage = 1;
-     gInterface.ZoneDessin->redraw() ;
+void MenuOptionsFilCB( Fl_Widget* w, void* data ){
+     gDonnees.dimFil =  1 + gInterface.MenuOptionsFil->value();
+     ActualiserInterface();
+     gInterface.ZoneDessin->redraw();
 }
 
 
-void ChampSaisieNumNbContour( Fl_Widget* w, void* data )
-{
+void ChampSaisieNumNbContour( Fl_Widget* w, void* data ){
     float nbContour;
     nbContour = gInterface.ChampSaisieNumNbContour->value() ;
-    if (round(nbContour) == nbContour)
-    {
-        if (nbContour > 0 && nbContour <= 10)
-        {
+    if (round(nbContour) == nbContour){
+        if (nbContour > 0 && nbContour <= 10){
             gDonnees.nbLignePerimetre = nbContour;
-            gDonnees.typeAffichage = 1;
+            ActualiserInterface();
             gInterface.ZoneDessin->redraw() ;
         }
-        else{
+        else {
             fl_message("Rentrez un entier entre 1 et 10");
         }
     }
-    else{
+    else {
         fl_message("Rentrez un ENTIER");
     }
 }
 
 
-void BoutonMoinsD (Fl_Widget* w, void* data)
-{
+void BoutonMoinsD (Fl_Widget* w, void* data){
     float p = 1;
     int i = 0;
-    for(i = 0; i < PRECISION + 1; i++)
-    {
+    for(i = 0; i < PRECISION + 1; i++){
         p = p * 10;
     }
     gDonnees.densiteMaillage = gDonnees.densiteMaillage - 1/p;
-    if (gDonnees.densiteMaillage<=0)
-    {
+    if (gDonnees.densiteMaillage<=0){
         gDonnees.densiteMaillage = 0.0;
     }
     gInterface.CurseurDensite->value(gDonnees.densiteMaillage);
-    gDonnees.typeAffichage = 2;
-    gInterface.ZoneDessin->redraw() ;
+    ActualiserInterface();
+    gInterface.ZoneDessin->redraw();
 }
 
-void BoutonPlusD (Fl_Widget* w, void* data)
-{
+void BoutonPlusD (Fl_Widget* w, void* data){
     float p = 1;
-    for(int i = 0; i<PRECISION + 1; i++)
-    {
+    for(int i = 0; i<PRECISION + 1; i++){
         p = p * 10;
     }
-
     gDonnees.densiteMaillage = gDonnees.densiteMaillage + 1/p;
-    if (gDonnees.densiteMaillage >= 1.0)
-    {
+    if (gDonnees.densiteMaillage >= 1.0){
         gDonnees.densiteMaillage = 1.0;
     }
     gInterface.CurseurDensite->value(gDonnees.densiteMaillage);
-    gDonnees.typeAffichage = 2;
-    gInterface.ZoneDessin->redraw() ;
+    ActualiserInterface();
+    gInterface.ZoneDessin->redraw();
 }
 
-void CurseurCBDensite ( Fl_Widget* w, void* data )
-{
-    gDonnees.densiteMaillage = gInterface.CurseurDensite->value() ;
-    gDonnees.typeAffichage = 2;
+void CurseurCBDensite ( Fl_Widget* w, void* data ){
+    gDonnees.densiteMaillage = gInterface.CurseurDensite->value();
+    ActualiserInterface();
     gInterface.ZoneDessin->redraw() ;
 }
